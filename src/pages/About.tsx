@@ -4,6 +4,9 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import Stats from "@/components/Stats";
 import Leadership from "@/components/Leadership";
+import Capability from "@/components/Capability";
+import Financials from "@/components/Financials";
+import Credentials from "@/components/Credentials";
 import Clients from "@/components/Clients";
 import CtaBand from "@/components/CtaBand";
 import { strengths } from "@/data/company";
@@ -14,7 +17,7 @@ const About = () => (
     <main>
       <PageHeader
         title="About us"
-        intro="Over two decades of electrical engineering and contracting for large-scale residential and commercial developments."
+        intro="Electrical engineering and contracting for large-scale residential and commercial developments in Delhi / NCR since 2000."
       />
 
       <section className="section">
@@ -22,7 +25,7 @@ const About = () => (
           <Reveal className="lg:col-span-5">
             <span className="eyebrow mb-4">Our story</span>
             <h2 className="text-display text-3xl md:text-4xl text-foreground">
-              A Gurugram firm built on delivery.
+              Over 25 years of delivery in NCR.
             </h2>
           </Reveal>
           <Reveal delay={0.08} className="lg:col-span-7 space-y-5 text-muted-foreground leading-relaxed">
@@ -32,8 +35,8 @@ const About = () => (
               distribution, substations and building electrical — for township and commercial developments.
             </p>
             <p>
-              We work with India's leading real estate developers, including Signature Global, Bestech, M3M India and
-              Vatika Group, and take projects from design through execution and commissioning.
+              We work with leading real estate developers, including Signature Global, Bestech India and Vipul Limited,
+              and take projects from design through execution and commissioning.
             </p>
           </Reveal>
         </div>
@@ -58,7 +61,10 @@ const About = () => (
         </div>
       </section>
 
+      <Capability />
+      <Financials />
       <Leadership />
+      <Credentials />
       <Clients />
       <CtaBand />
     </main>

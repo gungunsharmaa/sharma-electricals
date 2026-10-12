@@ -19,6 +19,9 @@ const Clients = () => (
             {client}
           </div>
         ))}
+        {Array.from({ length: (4 - (clients.length % 4)) % 4 }).map((_, i) => (
+          <div key={`fill-${i}`} aria-hidden className="hidden bg-background md:block" />
+        ))}
       </div>
     </div>
   </section>

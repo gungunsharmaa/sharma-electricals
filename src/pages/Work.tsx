@@ -20,7 +20,7 @@ const Work = () => {
       <main>
         <PageHeader
           title="Projects"
-          intro="A selection of residential townships, commercial complexes and mixed-use developments we have powered."
+          intro="Recent and ongoing electrical works for residential townships and commercial developments across Gurugram and Rewari."
         />
 
         <section className="section">
@@ -46,15 +46,16 @@ const Work = () => {
 
             <div className="grid gap-px bg-border border border-border sm:grid-cols-2 lg:grid-cols-3">
               {visible.map((p, i) => (
-                <Reveal key={p.title} delay={(i % 3) * 0.05} className="bg-background p-8 flex flex-col">
+                <Reveal key={`${p.title}-${p.scope}`} delay={(i % 3) * 0.05} className="bg-background p-8 flex flex-col">
                   <div className="flex items-center justify-between gap-4">
                     <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      {p.category}
+                      {p.period ?? "In progress"}
                     </span>
                     <StatusBadge status={p.status} />
                   </div>
                   <h3 className="mt-6 font-serif text-2xl font-semibold text-foreground">{p.title}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{p.location}</p>
+                  <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-foreground/70">{p.client}</p>
                   <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{p.scope}</p>
                 </Reveal>
               ))}

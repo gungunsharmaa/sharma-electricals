@@ -13,12 +13,12 @@ const About = () => (
         </h2>
         <p className="mt-6 text-muted-foreground leading-relaxed">
           Sharma Electricals Pvt. Ltd. is a B2B electrical engineering and contracting company headquartered in
-          Gurugram, Haryana. With over 23 years of experience, we deliver large-scale electrical infrastructure for
+          Gurugram, Haryana. Established in 2000, we have been delivering large-scale electrical infrastructure for
           residential and commercial developments.
         </p>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          We partner with Signature Global, Bestech, M3M India and Vatika Group to deliver world-class electrical
-          systems that power modern living and commercial spaces.
+          Our clients include Signature Global, Bestech India and Vipul Limited, and we carry a dedicated team of
+          engineers, safety and quality staff on every project.
         </p>
         <Link to="/about" className="link-arrow mt-8">
           More about us <FiArrowRight />

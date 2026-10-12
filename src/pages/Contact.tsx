@@ -10,6 +10,7 @@ const details = [
   { icon: FiMapPin, label: "Office", value: company.address },
   { icon: FiPhone, label: "Phone", value: company.phone, href: company.phoneHref },
   { icon: FiMail, label: "Email", value: company.email, href: `mailto:${company.email}` },
+  { icon: FiMail, label: "Email (general)", value: company.emailSecondary, href: `mailto:${company.emailSecondary}` },
 ];
 
 const Contact = () => (

@@ -23,7 +23,7 @@ const Projects = () => (
         <div className="max-w-2xl">
           <span className="eyebrow mb-4">Selected projects</span>
           <h2 className="text-display text-3xl md:text-5xl text-foreground">
-            Delivered across NCR's landmark developments.
+            Delivered across Gurugram's leading developments.
           </h2>
         </div>
         <Link to="/work" className="link-arrow self-start md:self-auto">
@@ -38,7 +38,10 @@ const Projects = () => (
             delay={i * 0.04}
             className="grid gap-2 md:gap-8 md:grid-cols-12 md:items-center border-b border-border py-6"
           >
-            <h3 className="md:col-span-4 font-sans text-lg font-semibold text-foreground">{p.title}</h3>
+            <div className="md:col-span-4">
+              <h3 className="font-sans text-lg font-semibold text-foreground">{p.title}</h3>
+              <p className="mt-0.5 text-sm text-muted-foreground">{p.client}</p>
+            </div>
             <p className="md:col-span-2 text-sm text-muted-foreground">{p.location}</p>
             <p className="md:col-span-4 text-sm text-muted-foreground">{p.scope}</p>
             <div className="md:col-span-2 md:text-right">
