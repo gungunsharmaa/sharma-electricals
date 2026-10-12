@@ -1,77 +1,81 @@
+import { FiMapPin, FiPhone, FiMail, FiExternalLink } from "react-icons/fi";
 import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
+import ContactForm from "@/components/ContactForm";
+import { company } from "@/data/company";
 
-const Contact = () => {
-  return (
-    <div className="min-h-screen">
-      <Navigation />
-      <section className="pt-32 pb-32 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-20">
-              <div>
-                <h1 className="text-minimal text-muted-foreground mb-4">GET IN TOUCH</h1>
-                <h2 className="text-4xl md:text-6xl font-light text-architectural mb-12">
-                  Let's Create Something
-                  <br />
-                  Extraordinary
-                </h2>
-                
-                <div className="space-y-8">
+const details = [
+  { icon: FiMapPin, label: "Office", value: company.address },
+  { icon: FiPhone, label: "Phone", value: company.phone, href: company.phoneHref },
+  { icon: FiMail, label: "Email", value: company.email, href: `mailto:${company.email}` },
+];
+
+const Contact = () => (
+  <div className="min-h-screen bg-background">
+    <Navigation />
+    <main>
+      <PageHeader
+        title="Contact us"
+        intro="Tell us about your project and our team will get back to you. For urgent requirements, call us directly."
+      />
+
+      <section className="section">
+        <div className="container grid gap-14 lg:grid-cols-12">
+          <Reveal className="lg:col-span-5">
+            <span className="eyebrow mb-4">Get in touch</span>
+            <h2 className="text-display text-3xl md:text-4xl text-foreground">We'd like to hear from you.</h2>
+
+            <ul className="mt-10 space-y-7">
+              {details.map(({ icon: Icon, label, value, href }) => (
+                <li key={label} className="flex gap-4">
+                  <Icon className="mt-1 shrink-0 text-lg text-primary" aria-hidden />
                   <div>
-                    <h3 className="text-minimal text-muted-foreground mb-2">EMAIL</h3>
-                    <a href="mailto:hello@archstudio.com" className="text-xl hover:text-muted-foreground transition-colors duration-300">
-                      hello@archstudio.com
-                    </a>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</p>
+                    {href ? (
+                      <a href={href} className="mt-1 block text-foreground hover:underline break-all">{value}</a>
+                    ) : (
+                      <p className="mt-1 text-foreground">{value}</p>
+                    )}
                   </div>
-                  
-                  <div>
-                    <h3 className="text-minimal text-muted-foreground mb-2">PHONE</h3>
-                    <a href="tel:+1234567890" className="text-xl hover:text-muted-foreground transition-colors duration-300">
-                      +1 (234) 567-8900
-                    </a>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-minimal text-muted-foreground mb-2">STUDIO</h3>
-                    <address className="text-xl not-italic">
-                      123 Design Avenue
-                      <br />
-                      New York, NY 10001
-                    </address>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-minimal text-muted-foreground mb-6">FOLLOW US</h3>
-                  <div className="space-y-4">
-                    <a href="#" className="block text-xl hover:text-muted-foreground transition-colors duration-300">
-                      Instagram
-                    </a>
-                    <a href="#" className="block text-xl hover:text-muted-foreground transition-colors duration-300">
-                      LinkedIn
-                    </a>
-                    <a href="#" className="block text-xl hover:text-muted-foreground transition-colors duration-300">
-                      Behance
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="pt-12 border-t border-border">
-                  <p className="text-muted-foreground">
-                    We approach each project with curiosity, rigor, and a commitment to excellence. 
-                    Our process begins with listening, understanding your vision, and translating 
-                    it into spaces that exceed expectations.
-                  </p>
-                </div>
-              </div>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-10 border border-border">
+              <iframe
+                title="Sharma Electricals — Bestech Citygate, Sector 81A, Gurugram"
+                src={company.mapEmbed}
+                width="100%"
+                height="240"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+              />
+              <a
+                href={company.mapLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between px-4 py-3 border-t border-border text-sm font-medium text-foreground hover:bg-card transition-colors"
+              >
+                Open in Google Maps <FiExternalLink />
+              </a>
             </div>
-          </div>
+          </Reveal>
+
+          <Reveal delay={0.1} className="lg:col-span-7">
+            <div className="border border-border bg-card p-8 md:p-10">
+              <h2 className="font-serif text-2xl font-semibold text-foreground">Send us a message</h2>
+              <p className="mt-2 mb-8 text-sm text-muted-foreground">Fields marked * are required.</p>
+              <ContactForm />
+            </div>
+          </Reveal>
         </div>
       </section>
-    </div>
-  );
-};
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Contact;

@@ -1,110 +1,91 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import seLogo from "@/assets/se-logo.jpeg";
+import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Leadership", href: "#leadership" },
-  { label: "Clients", href: "#clients" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Projects", to: "/work" },
 ];
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const { pathname } = useLocation();
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-3">
-          <img src={seLogo} alt="Sharma Electricals" className="h-10 w-10 rounded-full object-cover" />
-          <div className="hidden sm:block">
-            <span className="text-foreground font-bold text-lg leading-none block">
-              Sharma Electricals
-            </span>
-            <span className="text-primary text-[10px] tracking-[0.15em] uppercase font-medium">
+    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
+      <div className="container flex h-[72px] items-center justify-between">
+        <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+          <img src={seLogo} alt="Sharma Electricals" className="h-10 w-10 rounded-sm object-cover" />
+          <span className="leading-tight">
+            <span className="block font-serif text-lg font-semibold text-foreground">Sharma Electricals</span>
+            <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
               Pvt. Ltd.
             </span>
-          </div>
-        </a>
+          </span>
+        </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-8">
+        {/* Desktop */}
+        <nav className="hidden lg:flex items-center gap-9">
           {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 font-medium"
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === "/"}
+              className={({ isActive }) =>
+                cn(
+                  "relative py-1 text-sm font-medium transition-colors hover:text-foreground",
+                  "after:absolute after:left-0 after:-bottom-0.5 after:h-0.5 after:w-full after:bg-accent after:origin-left after:transition-transform",
+                  isActive
+                    ? "text-foreground after:scale-x-100"
+                    : "text-muted-foreground after:scale-x-0 hover:after:scale-x-100"
+                )
+              }
             >
               {link.label}
-            </a>
+            </NavLink>
           ))}
-          <a
-            href="#contact"
-            className="ml-4 px-5 py-2.5 bg-primary text-primary-foreground text-sm font-semibold rounded hover:bg-primary/90 transition-colors"
+          <Link
+            to="/contact"
+            className={cn(
+              "ml-2 px-5 py-2.5 text-sm font-semibold bg-primary text-primary-foreground rounded-sm hover:bg-primary/90 transition-colors",
+              pathname === "/contact" && "ring-2 ring-accent ring-offset-2"
+            )}
           >
-            Get a Quote
-          </a>
-        </div>
+            Contact us
+          </Link>
+        </nav>
 
-        {/* Mobile toggle */}
         <button
-          className="lg:hidden text-foreground text-2xl"
-          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden text-2xl text-foreground"
+          onClick={() => setIsOpen((o) => !o)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
         >
           {isOpen ? <HiX /> : <HiMenuAlt3 />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background/98 backdrop-blur-md border-b border-border overflow-hidden"
-          >
-            <div className="container mx-auto px-6 py-6 space-y-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block text-muted-foreground hover:text-primary transition-colors font-medium"
-                >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="#contact"
+      {isOpen && (
+        <nav className="lg:hidden border-t border-border bg-background">
+          <div className="container py-4 flex flex-col">
+            {[...navLinks, { label: "Contact us", to: "/contact" }].map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
                 onClick={() => setIsOpen(false)}
-                className="inline-block mt-4 px-5 py-2.5 bg-primary text-primary-foreground text-sm font-semibold rounded"
+                className="py-3 text-base font-medium text-foreground border-b border-border last:border-0"
               >
-                Get a Quote
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
+    </header>
   );
 };
 

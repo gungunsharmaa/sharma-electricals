@@ -1,87 +1,47 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { FiBattery, FiZap, FiSun, FiSettings, FiShield, FiCpu } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import { FiArrowRight } from "react-icons/fi";
+import Reveal from "./Reveal";
+import { services } from "@/data/company";
 
-const services = [
-  { icon: FiZap, title: "HT/LT Electrical Works", desc: "Complete high tension and low tension electrical installations for large-scale developments." },
-  { icon: FiBattery, title: "Power Distribution", desc: "Substation design, panel manufacturing, and distribution network engineering." },
-  { icon: FiSun, title: "Solar & Renewable Energy", desc: "Rooftop solar installations and hybrid energy solutions for sustainable developments." },
-  { icon: FiSettings, title: "Electrical Maintenance", desc: "Annual maintenance contracts and 24/7 breakdown support for electrical infrastructure." },
-  { icon: FiShield, title: "Safety & Compliance", desc: "Electrical safety audits, earthing systems, and lightning protection solutions." },
-  { icon: FiCpu, title: "Automation & Controls", desc: "Building management systems, SCADA integration, and smart electrical controls." },
-];
+interface ServicesProps {
+  /** Home page shows an intro heading and a link through; the Services page just lists. */
+  showHeading?: boolean;
+}
 
-const Services = () => {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+const Services = ({ showHeading = true }: ServicesProps) => (
+  <section className="section bg-card">
+    <div className="container">
+      {showHeading && (
+        <Reveal className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="max-w-2xl">
+            <span className="eyebrow mb-4">What we do</span>
+            <h2 className="text-display text-3xl md:text-5xl text-foreground">
+              Comprehensive electrical solutions.
+            </h2>
+          </div>
+          <Link to="/services" className="link-arrow self-start md:self-auto">
+            All services <FiArrowRight />
+          </Link>
+        </Reveal>
+      )}
 
-  return (
-    <section id="services" ref={ref} className="py-24 bg-card relative overflow-hidden">
-      {/* Background circuit pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `
-          linear-gradient(90deg, hsl(207 100% 53%) 1px, transparent 1px),
-          linear-gradient(hsl(207 100% 53%) 1px, transparent 1px)
-        `,
-        backgroundSize: "60px 60px",
-      }} />
-
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-2xl mx-auto mb-16"
-        >
-          <span className="text-section-label mb-4 block">Our Services</span>
-          <h2 className="text-display text-3xl md:text-4xl text-foreground">
-            Comprehensive <span className="text-primary">Electrical Solutions</span>
-          </h2>
-        </motion.div>
-
-        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 40, rotateX: 10 }}
-              animate={inView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1, type: "spring", stiffness: 80 }}
-              whileHover={{
-                y: -8,
-                boxShadow: "0 0 40px hsl(207 100% 53% / 0.15)",
-                borderColor: "hsl(207 100% 53% / 0.4)",
-              }}
-              className="group p-6 rounded-lg border border-border bg-background transition-all duration-300 cursor-pointer relative overflow-hidden"
-            >
-              {/* Hover electric glow top line */}
-              <motion.div
-                className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-
-              <motion.div
-                whileHover={{ scale: 1.1, rotate: -5 }}
-                className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors"
-              >
-                <service.icon className="text-primary text-xl" />
-              </motion.div>
-              <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                {service.desc}
-              </p>
-
-              {/* Corner accent */}
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-primary/0 group-hover:border-primary/30 transition-colors rounded-br-lg" />
-            </motion.div>
-          ))}
-        </div>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 border-t border-l border-border">
+        {services.map((service, i) => (
+          <Reveal
+            key={service.title}
+            delay={(i % 3) * 0.06}
+            className="group border-b border-r border-border bg-background p-8 transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
+            <span className="text-xs font-semibold tracking-widest text-accent">0{i + 1}</span>
+            <h3 className="mt-4 font-sans text-lg font-semibold">{service.title}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-primary-foreground/75">
+              {service.desc}
+            </p>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Services;

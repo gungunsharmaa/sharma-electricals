@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiArrowRight, FiZap } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import heroImg from "@/assets/hero-electrical.jpg";
 import heroSlide2 from "@/assets/hero-slide-2.jpg";
 import heroSlide3 from "@/assets/hero-slide-3.jpg";
 import heroSlide4 from "@/assets/hero-slide-4.jpg";
 import heroSlide5 from "@/assets/hero-slide-5.jpg";
 import heroSlide6 from "@/assets/hero-slide-6.jpg";
-import ElectricalBackground from "./ElectricalBackground";
+import { company } from "@/data/company";
 
 const heroSlides = [heroImg, heroSlide2, heroSlide3, heroSlide4, heroSlide5, heroSlide6];
 
@@ -17,121 +18,58 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 2500);
+    }, 6000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background slideshow */}
-      <AnimatePresence mode="sync">
+    <section className="relative flex min-h-[calc(100vh-72px)] items-end overflow-hidden bg-primary text-primary-foreground">
+      <AnimatePresence initial={false}>
         <motion.div
           key={currentSlide}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1 }}
-          transition={{ opacity: { duration: 0.8, ease: "easeInOut" }, scale: { duration: 3, ease: "easeOut" } }}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.4, ease: "easeInOut" }}
+          className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${heroSlides[currentSlide]})` }}
         />
       </AnimatePresence>
-      <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-background/10" />
+      <div className="absolute inset-0 bg-gradient-hero" />
 
-      <ElectricalBackground />
-
-      {/* Glow accent */}
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]" />
-
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 py-32">
-        <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <motion.span
-              animate={{ boxShadow: ["0 0 10px hsl(207 100% 53% / 0.6)", "0 0 20px hsl(207 100% 53% / 0.9)", "0 0 10px hsl(207 100% 53% / 0.6)"] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="glow-dot"
-            />
-            <span className="text-section-label">23+ Years of Excellence</span>
-          </motion.div>
-
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground mb-6"
-          >
-            Engineering{" "}
-            <motion.span
-              className="text-primary inline-block"
-              animate={{ textShadow: ["0 0 20px hsl(207 100% 53% / 0)", "0 0 30px hsl(207 100% 53% / 0.4)", "0 0 20px hsl(207 100% 53% / 0)"] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-              Electrical
-            </motion.span>
-            <br />
-            Excellence
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-xl mb-10 leading-relaxed"
-          >
-            Powering India's largest real estate developments with world-class
-            electrical infrastructure solutions since 2003.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap gap-4"
-          >
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px hsl(207 100% 53% / 0.4)" }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-semibold rounded hover:bg-primary/90 transition-colors"
-            >
-              Start a Project <FiArrowRight />
-            </motion.a>
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 px-7 py-3.5 border border-border text-foreground font-semibold rounded hover:border-primary hover:text-primary transition-colors"
-            >
-              View Our Work
-            </a>
-          </motion.div>
-          
-        </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.8 }}
-      >
-        
+      <div className="container relative z-10 pb-16 pt-32 md:pb-24">
         <motion.div
-          className="w-6 h-10 border-2 border-muted-foreground/40 rounded-full flex justify-center pt-2"
-          animate={{ borderColor: ["hsl(var(--muted-foreground) / 0.4)", "hsl(var(--primary))", "hsl(var(--muted-foreground) / 0.4)"] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="max-w-3xl"
         >
-          <motion.div
-            className="w-1.5 h-1.5 bg-primary rounded-full"
-            animate={{ y: [0, 16, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          />
+          <span className="eyebrow !text-primary-foreground/70 mb-6">
+            Electrical engineering & contracting · Since {company.founded}
+          </span>
+          <h1 className="text-display text-5xl md:text-7xl">
+            Powering the developments that shape modern India.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-primary-foreground/80">
+            HT/LT infrastructure, power distribution and electrical systems for the country's leading real estate
+            developers — delivered end to end.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-7 py-3.5 bg-accent text-accent-foreground text-sm font-semibold rounded-sm hover:bg-accent/90 transition-colors"
+            >
+              Contact us <FiArrowRight />
+            </Link>
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 px-7 py-3.5 border border-primary-foreground/40 text-sm font-semibold rounded-sm hover:bg-primary-foreground/10 transition-colors"
+            >
+              View our projects
+            </Link>
+          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 };

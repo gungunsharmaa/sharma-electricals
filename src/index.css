@@ -2,65 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Sharma Electricals — Dark Corporate Design System */
+/* Sharma Electricals — Corporate Design System
+   Light, restrained: white canvas, deep navy, a single amber accent. */
 
 @layer base {
   :root {
-    /* Dark Corporate Theme — always dark */
-    --background: 216 28% 7%;
-    --foreground: 210 20% 95%;
+    --background: 0 0% 100%;
+    --foreground: 222 40% 12%;
 
-    --card: 216 25% 10%;
-    --card-foreground: 210 20% 95%;
+    --card: 210 25% 97%;
+    --card-foreground: 222 40% 12%;
 
-    --popover: 216 25% 10%;
-    --popover-foreground: 210 20% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 40% 12%;
 
-    /* Primary: Electric Blue */
-    --primary: 207 100% 53%;
-    --primary-foreground: 216 28% 7%;
+    /* Primary: deep navy */
+    --primary: 219 65% 17%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Deep Navy */
-    --secondary: 213 58% 28%;
-    --secondary-foreground: 210 20% 95%;
+    --secondary: 214 30% 93%;
+    --secondary-foreground: 222 40% 12%;
 
-    /* Muted */
-    --muted: 216 20% 14%;
-    --muted-foreground: 210 10% 55%;
+    --muted: 214 22% 95%;
+    --muted-foreground: 217 14% 38%;
 
-    /* Accent: Bright Blue */
-    --accent: 207 100% 53%;
-    --accent-foreground: 216 28% 7%;
+    /* Accent: amber — used sparingly (rules, small highlights) */
+    --accent: 38 92% 50%;
+    --accent-foreground: 222 40% 12%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 216 15% 18%;
-    --input: 216 20% 14%;
-    --ring: 207 100% 53%;
+    --border: 214 20% 87%;
+    --input: 214 20% 80%;
+    --ring: 219 65% 17%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 216 25% 10%;
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 207 100% 53%;
-    --sidebar-primary-foreground: 216 28% 7%;
-    --sidebar-accent: 216 20% 14%;
-    --sidebar-accent-foreground: 210 20% 95%;
-    --sidebar-border: 216 15% 18%;
-    --sidebar-ring: 207 100% 53%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 40% 12%;
+    --sidebar-primary: 219 65% 17%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 214 22% 95%;
+    --sidebar-accent-foreground: 222 40% 12%;
+    --sidebar-border: 214 20% 87%;
+    --sidebar-ring: 219 65% 17%;
 
-    /* Custom tokens */
-    --glow-primary: 0 0 30px hsl(207 100% 53% / 0.3);
-    --gradient-hero: linear-gradient(135deg, hsl(216 28% 7% / 0.95), hsl(216 28% 7% / 0.6));
-    --gradient-card: linear-gradient(145deg, hsl(216 25% 12%), hsl(216 25% 8%));
-    --shadow-glow: 0 0 40px hsl(207 100% 53% / 0.15);
-    --shadow-card: 0 10px 40px -10px hsl(216 28% 3% / 0.5);
-  }
-
-  /* No separate dark mode — it's always dark */
-  .dark {
-    /* Same as root */
+    --gradient-hero: linear-gradient(90deg, hsl(219 65% 12% / 0.92), hsl(219 65% 12% / 0.55));
   }
 }
 
@@ -69,26 +57,41 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
-  /* Typography utilities */
+  h1, h2, h3 {
+    font-family: 'Source Serif 4', Georgia, serif;
+  }
+}
+
+@layer components {
+  /* Serif headline used for page + section titles */
   .text-display {
-    @apply tracking-[-0.03em] leading-[1.05] font-bold;
+    @apply font-semibold tracking-tight leading-[1.1];
+    font-family: 'Source Serif 4', Georgia, serif;
   }
 
-  .text-section-label {
-    @apply tracking-[0.2em] uppercase text-xs font-semibold text-primary;
+  /* Small uppercase label with a short amber rule */
+  .eyebrow {
+    @apply flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply block h-px w-8 bg-accent;
   }
 
-  /* Glow effects */
-  .glow-line {
-    @apply h-px bg-gradient-to-r from-transparent via-primary to-transparent opacity-40;
+  .section {
+    @apply py-20 md:py-28;
   }
 
-  .glow-dot {
-    @apply w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(207_100%_53%_/_0.6)];
+  .link-arrow {
+    @apply inline-flex items-center gap-2 text-sm font-semibold text-primary border-b border-primary/30 pb-0.5 transition-colors hover:border-accent;
   }
 }

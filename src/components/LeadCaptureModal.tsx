@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { motion } from "framer-motion";
-import { FiSend, FiZap } from "react-icons/fi";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
+import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT } from "@/config/forms";
 
 const STORAGE_KEY = "leadCaptureDismissedAt";
 const COOLDOWN_DAYS = 7;
@@ -53,11 +52,11 @@ const LeadCaptureModal = () => {
   const onSubmit = async (data: FormData) => {
     setSubmitting(true);
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: "b28309d5-0faa-43f9-9739-0c7a81a6e8a0",
+          access_key: WEB3FORMS_ACCESS_KEY,
           subject: `New Lead from ${data.name} — ${data.company}`,
           from_name: data.name,
           name: data.name,
@@ -76,26 +75,25 @@ const LeadCaptureModal = () => {
         localStorage.setItem(STORAGE_KEY, String(Date.now()));
         setOpen(false);
       } else {
-        toast({ title: "Something went wrong", description: "Please try again or use the contact form below.", variant: "destructive" });
+        toast({ title: "Something went wrong", description: "Please try again or use the contact page.", variant: "destructive" });
       }
     } catch {
-      toast({ title: "Something went wrong", description: "Please try again or use the contact form below.", variant: "destructive" });
+      toast({ title: "Something went wrong", description: "Please try again or use the contact page.", variant: "destructive" });
     } finally {
       setSubmitting(false);
     }
   };
 
-  const inputClass = "w-full px-4 py-3 rounded-lg bg-input border border-border text-foreground text-sm focus:outline-none focus:border-primary focus:shadow-[0_0_15px_hsl(207_100%_53%_/_0.15)] transition-all";
-  const errorClass = "text-xs text-red-400 mt-1";
+  const inputClass = "w-full px-4 py-3 rounded-sm bg-background border border-input text-foreground text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors";
+  const errorClass = "text-xs text-destructive mt-1";
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-md p-0 overflow-hidden border-border bg-background">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
+      <DialogContent className="sm:max-w-md p-0 overflow-hidden border-border bg-background border-t-4 border-t-accent rounded-sm">
 
         <div className="p-6 sm:p-8">
-          <DialogTitle className="text-2xl text-display text-foreground">
-            Leave Your Electrical Needs In <span className="text-primary">Expert Hands</span>
+          <DialogTitle className="text-display text-2xl text-foreground">
+            Leave your electrical needs in expert hands
           </DialogTitle>
           <DialogDescription className="mt-2 mb-6">
             Share a few details and our team will reach out shortly.
@@ -152,23 +150,13 @@ const LeadCaptureModal = () => {
               />
             </div>
 
-            <motion.button
+            <button
               type="submit"
               disabled={submitting}
-              whileHover={!submitting ? { scale: 1.02, boxShadow: "0 0 30px hsl(207 100% 53% / 0.3)" } : {}}
-              whileTap={!submitting ? { scale: 0.98 } : {}}
-              className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 font-semibold rounded-lg transition-colors ${
-                submitting
-                  ? "bg-primary/70 text-primary-foreground cursor-not-allowed"
-                  : "bg-primary text-primary-foreground hover:bg-primary/90"
-              }`}
+              className="w-full px-6 py-3.5 text-sm font-semibold rounded-sm bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-70 disabled:cursor-not-allowed transition-colors"
             >
-              {submitting ? (
-                <>Sending...</>
-              ) : (
-                <><FiZap className="animate-pulse" /> Send Message <FiSend /></>
-              )}
-            </motion.button>
+              {submitting ? "Sending…" : "Send message"}
+            </button>
           </form>
         </div>
       </DialogContent>

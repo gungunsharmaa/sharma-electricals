@@ -1,109 +1,63 @@
-import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin, FiZap } from "react-icons/fi";
+import { Link } from "react-router-dom";
 import seLogo from "@/assets/se-logo.jpeg";
+import { company } from "@/data/company";
 
-const Footer = () => {
-  return (
-    <footer className="bg-background border-t border-border relative overflow-hidden">
-      {/* Animated glow line at top */}
-      <motion.div
-        animate={{ opacity: [0.3, 0.7, 0.3] }}
-        transition={{ duration: 3, repeat: Infinity }}
-        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent"
-      />
+const links = [
+  { label: "Home", to: "/" },
+  { label: "About us", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Projects", to: "/work" },
+  { label: "Contact us", to: "/contact" },
+];
 
-      <div className="container mx-auto px-6 py-16">
-        <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <motion.img
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                src={seLogo}
-                alt="Sharma Electricals"
-                className="h-10 w-10 rounded-full object-cover"
-              />
-              <div>
-                <span className="font-bold text-foreground block leading-none">Sharma Electricals</span>
-                <span className="text-primary text-[10px] tracking-[0.15em] uppercase font-medium">Pvt. Ltd.</span>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Engineering Electrical Excellence since 2002. Powering India's finest real estate developments.
-            </p>
+const Footer = () => (
+  <footer className="bg-primary text-primary-foreground">
+    <div className="container py-16">
+      <div className="grid gap-12 md:grid-cols-12">
+        <div className="md:col-span-5">
+          <div className="flex items-center gap-3 mb-5">
+            <img src={seLogo} alt="" className="h-10 w-10 rounded-sm object-cover" />
+            <span className="font-serif text-xl font-semibold">{company.short}</span>
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-              <FiZap className="text-primary text-xs" /> Quick Links
-            </h4>
-            <div className="space-y-3">
-              {["About", "Services", "Projects", "Leadership", "Contact"].map((link) => (
-                <motion.a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  whileHover={{ x: 4, color: "hsl(207 100% 53%)" }}
-                  className="block text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {link}
-                </motion.a>
-              ))}
-            </div>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-              <FiZap className="text-primary text-xs" /> Services
-            </h4>
-            <div className="space-y-3">
-              {["HT/LT Works", "Power Distribution", "Solar Energy", "Maintenance", "Automation"].map((s) => (
-                <span key={s} className="block text-sm text-muted-foreground">{s}</span>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 className="text-sm font-semibold text-foreground mb-4 flex items-center gap-2">
-              <FiZap className="text-primary text-xs" /> Contact
-            </h4>
-            <div className="space-y-3">
-              <div className="flex items-start gap-2">
-                <FiMapPin className="text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">Office no. 327, 3rd floor, Bestech Citygate, Sec-81A, Gurugram, Haryana</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <FiPhone className="text-primary flex-shrink-0" />
-                <a href="tel:+919811617703" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  +91 9811617703
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <FiMail className="text-primary flex-shrink-0" />
-                <a href="mailto:sharma.electricals99@gmail.com" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                  sharma.electricals99@gmail.com
-                </a>
-              </div>
-            </div>
-          </div>
+          <p className="max-w-sm text-sm leading-relaxed text-primary-foreground/70">
+            Electrical engineering and contracting for India's leading real estate developers, since {company.founded}.
+          </p>
         </div>
 
-        {/* Bottom bar */}
-        <div className="glow-line mt-12 mb-6" />
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-muted-foreground">
-            © 2024 Sharma Electricals Pvt. Ltd. All rights reserved.
-          </p>
-          <p className="text-xs text-muted-foreground flex items-center gap-1">
-            Designed & Built with <FiZap className="text-primary" /> in India
-          </p>
+        <div className="md:col-span-3">
+          <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/50 mb-5">Explore</h4>
+          <ul className="space-y-3">
+            {links.map((l) => (
+              <li key={l.to}>
+                <Link to={l.to} className="text-sm text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="md:col-span-4">
+          <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-primary-foreground/50 mb-5">Contact</h4>
+          <address className="not-italic space-y-3 text-sm text-primary-foreground/80">
+            <p>{company.address}</p>
+            <p>
+              <a href={company.phoneHref} className="hover:text-primary-foreground transition-colors">{company.phone}</a>
+            </p>
+            <p>
+              <a href={`mailto:${company.email}`} className="hover:text-primary-foreground transition-colors break-all">
+                {company.email}
+              </a>
+            </p>
+          </address>
         </div>
       </div>
-    </footer>
-  );
-};
+
+      <div className="mt-14 pt-6 border-t border-primary-foreground/15 text-xs text-primary-foreground/50">
+        © {new Date().getFullYear()} {company.name} All rights reserved.
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

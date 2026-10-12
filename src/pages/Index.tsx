@@ -4,28 +4,26 @@ import Stats from "@/components/Stats";
 import About from "@/components/About";
 import Services from "@/components/Services";
 import Projects from "@/components/Projects";
-import Leadership from "@/components/Leadership";
 import Clients from "@/components/Clients";
-import Contact from "@/components/Contact";
+import CtaBand from "@/components/CtaBand";
 import Footer from "@/components/Footer";
 import LeadCaptureModal from "@/components/LeadCaptureModal";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
+const Index = () => (
+  <div className="min-h-screen bg-background">
+    <Navigation />
+    <main>
       <Hero />
       <Stats />
       <About />
       <Services />
       <Projects />
-      <Leadership />
       <Clients />
-      <Contact />
-      <Footer />
-      <LeadCaptureModal />
-    </div>
-  );
-};
+      <CtaBand />
+    </main>
+    <Footer />
+    <LeadCaptureModal />
+  </div>
+);
 
 export default Index;

@@ -1,9 +1,6 @@
 import { useEffect, useRef } from "react";
 
-/**
- * Animated circuit-board / electric-grid canvas that draws behind sections.
- * Renders glowing lines, nodes, and travelling electric pulses.
- */
+
 const ElectricBackground = ({ className = "" }: { className?: string }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -24,7 +21,7 @@ const ElectricBackground = ({ className = "" }: { className?: string }) => {
     resize();
     window.addEventListener("resize", resize);
 
-    // Circuit nodes
+    
     const nodeCount = 40;
     interface Node { x: number; y: number; vx: number; vy: number }
     const nodes: Node[] = Array.from({ length: nodeCount }, () => ({
@@ -34,7 +31,7 @@ const ElectricBackground = ({ className = "" }: { className?: string }) => {
       vy: (Math.random() - 0.5) * 0.3,
     }));
 
-    // Electric pulses travelling along connections
+    
     interface Pulse { fromIdx: number; toIdx: number; t: number; speed: number }
     const pulses: Pulse[] = [];
 
@@ -45,13 +42,13 @@ const ElectricBackground = ({ className = "" }: { className?: string }) => {
       pulses.push({ fromIdx: a, toIdx: b, t: 0, speed: 0.008 + Math.random() * 0.012 });
     };
 
-    // Start with some pulses
+    
     for (let i = 0; i < 6; i++) spawnPulse();
 
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
 
-      // Move nodes
+      
       nodes.forEach((n) => {
         n.x += n.vx;
         n.y += n.vy;
@@ -59,7 +56,7 @@ const ElectricBackground = ({ className = "" }: { className?: string }) => {
         if (n.y < 0 || n.y > h) n.vy *= -1;
       });
 
-      // Draw connections
+      
       const maxDist = 180;
       for (let i = 0; i < nodeCount; i++) {
         for (let j = i + 1; j < nodeCount; j++) {
@@ -78,7 +75,7 @@ const ElectricBackground = ({ className = "" }: { className?: string }) => {
         }
       }
 
-      // Draw nodes
+      
       nodes.forEach((n) => {
         ctx.fillStyle = "rgba(30, 167, 255, 0.25)";
         ctx.beginPath();
@@ -86,7 +83,7 @@ const ElectricBackground = ({ className = "" }: { className?: string }) => {
         ctx.fill();
       });
 
-      // Draw & advance pulses
+      
       for (let k = pulses.length - 1; k >= 0; k--) {
         const p = pulses[k];
         p.t += p.speed;
@@ -100,7 +97,7 @@ const ElectricBackground = ({ className = "" }: { className?: string }) => {
         const px = from.x + (to.x - from.x) * p.t;
         const py = from.y + (to.y - from.y) * p.t;
 
-        // Glow
+        
         const grad = ctx.createRadialGradient(px, py, 0, px, py, 12);
         grad.addColorStop(0, "rgba(30, 167, 255, 0.6)");
         grad.addColorStop(1, "rgba(30, 167, 255, 0)");
@@ -109,7 +106,7 @@ const ElectricBackground = ({ className = "" }: { className?: string }) => {
         ctx.arc(px, py, 12, 0, Math.PI * 2);
         ctx.fill();
 
-        // Core dot
+      
         ctx.fillStyle = "rgba(30, 167, 255, 0.9)";
         ctx.beginPath();
         ctx.arc(px, py, 2.5, 0, Math.PI * 2);
