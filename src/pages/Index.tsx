@@ -7,7 +7,6 @@ import Projects from "@/components/Projects";
 import Clients from "@/components/Clients";
 import CtaBand from "@/components/CtaBand";
 import Footer from "@/components/Footer";
-import LeadCaptureModal from "@/components/LeadCaptureModal";
 
 const Index = () => (
   <div className="min-h-screen bg-background">
@@ -22,7 +21,6 @@ const Index = () => (
       <CtaBand />
     </main>
     <Footer />
-    <LeadCaptureModal />
   </div>
 );
 

@@ -11,6 +11,8 @@ import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
+import { EnquiryProvider } from "./components/EnquiryProvider";
+import MobileActionBar from "./components/MobileActionBar";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +22,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <EnquiryProvider>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/work" element={<Work />} />
@@ -31,6 +34,8 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <MobileActionBar />
+        </EnquiryProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

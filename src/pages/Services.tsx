@@ -3,12 +3,14 @@ import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import ServicesGrid from "@/components/Services";
 import CtaBand from "@/components/CtaBand";
+import { photos } from "@/data/company";
 
 const Services = () => (
   <div className="min-h-screen bg-background">
     <Navigation />
     <main>
       <PageHeader
+        image={photos.control}
         title="Services"
         intro="End-to-end electrical engineering — from design and installation to maintenance and compliance."
       />

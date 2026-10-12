@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
-import { company } from "@/data/company";
+import { company, photos } from "@/data/company";
 
 const details = [
   { icon: FiMapPin, label: "Corporate office", value: company.address },
@@ -19,6 +19,7 @@ const Contact = () => (
     <Navigation />
     <main>
       <PageHeader
+        image={photos.dusk}
         title="Contact us"
         intro="Tell us about your project and our team will get back to you. For urgent requirements, call us directly."
       />
@@ -67,7 +68,7 @@ const Contact = () => (
           </Reveal>
 
           <Reveal delay={0.1} className="lg:col-span-7">
-            <div className="border border-border bg-card p-8 md:p-10">
+            <div className="border border-border bg-card p-6 md:p-10">
               <h2 className="font-serif text-2xl font-semibold text-foreground">Send us a message</h2>
               <p className="mt-2 mb-8 text-sm text-muted-foreground">Fields marked * are required.</p>
               <ContactForm />

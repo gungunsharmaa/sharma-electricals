@@ -7,22 +7,20 @@ const Clients = () => (
       <Reveal className="mb-12">
         <span className="eyebrow mb-4">Trusted by</span>
         <h2 className="text-display text-3xl md:text-4xl text-foreground max-w-2xl">
-          Partners to India's leading developers.
+          Partners to leading developers.
         </h2>
       </Reveal>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border border border-border">
+      {/* Flex-wrap + centered so an incomplete last row never leaves an empty cell */}
+      <ul className="flex flex-wrap justify-center gap-4">
         {clients.map((client) => (
-          <div
+          <li
             key={client}
-            className="flex h-28 items-center justify-center bg-background px-4 text-center font-serif text-lg font-semibold text-foreground/80"
+            className="flex h-24 md:h-28 w-[calc(50%-0.5rem)] md:w-[calc(25%-0.75rem)] items-center justify-center border border-border bg-background px-4 text-center font-serif text-base md:text-lg font-semibold text-foreground/80"
           >
             {client}
-          </div>
+          </li>
         ))}
-        {Array.from({ length: (4 - (clients.length % 4)) % 4 }).map((_, i) => (
-          <div key={`fill-${i}`} aria-hidden className="hidden bg-background md:block" />
-        ))}
-      </div>
+      </ul>
     </div>
   </section>
 );

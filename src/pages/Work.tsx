@@ -5,7 +5,7 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 import { StatusBadge } from "@/components/Projects";
-import { projects } from "@/data/company";
+import { projects, photos } from "@/data/company";
 import { cn } from "@/lib/utils";
 
 const filters = ["All", "Completed", "Ongoing"] as const;
@@ -19,13 +19,14 @@ const Work = () => {
       <Navigation />
       <main>
         <PageHeader
+          image={photos.night}
           title="Projects"
           intro="Recent and ongoing electrical works for residential townships and commercial developments across Gurugram and Rewari."
         />
 
         <section className="section">
           <div className="container">
-            <div className="mb-10 flex gap-2" role="tablist" aria-label="Filter projects">
+            <div className="mb-8 flex flex-wrap gap-2" role="tablist" aria-label="Filter projects">
               {filters.map((f) => (
                 <button
                   key={f}
@@ -44,16 +45,16 @@ const Work = () => {
               ))}
             </div>
 
-            <div className="grid gap-px bg-border border border-border sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {visible.map((p, i) => (
-                <Reveal key={`${p.title}-${p.scope}`} delay={(i % 3) * 0.05} className="bg-background p-8 flex flex-col">
+                <Reveal key={`${p.title}-${p.scope}`} delay={(i % 3) * 0.05} className="flex flex-col border border-border bg-background p-6 md:p-8">
                   <div className="flex items-center justify-between gap-4">
                     <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                       {p.period ?? "In progress"}
                     </span>
                     <StatusBadge status={p.status} />
                   </div>
-                  <h3 className="mt-6 font-serif text-2xl font-semibold text-foreground">{p.title}</h3>
+                  <h3 className="mt-6 font-serif text-2xl font-semibold text-foreground text-balance">{p.title}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">{p.location}</p>
                   <p className="mt-4 text-xs font-semibold uppercase tracking-wider text-foreground/70">{p.client}</p>
                   <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{p.scope}</p>

@@ -1,3 +1,13 @@
+import imgSubstation from "@/assets/hero-electrical.jpg";
+import imgDusk from "@/assets/hero-slide-2.jpg";
+import imgControl from "@/assets/hero-slide-3.jpg";
+import imgEngineer from "@/assets/hero-slide-4.jpg";
+import imgPylon from "@/assets/hero-slide-5.jpg";
+import imgNight from "@/assets/hero-slide-6.jpg";
+
+// Page banner / section photos, shared so pages stay consistent.
+export const photos = { substation: imgSubstation, dusk: imgDusk, control: imgControl, engineer: imgEngineer, pylon: imgPylon, night: imgNight };
+
 // Static company content shared across the home page and inner pages.
 // Source: company profile document (contractor details), FY 2025-26.
 
@@ -84,12 +94,12 @@ export const process = [
 ];
 
 export const services = [
-  { title: "HT/LT Electrical Works", desc: "Complete high-tension and low-tension electrical installations for large-scale developments." },
-  { title: "Power Distribution", desc: "Substation design, panel manufacturing and distribution network engineering." },
-  { title: "Solar & Renewable Energy", desc: "Rooftop solar installations and hybrid energy solutions for sustainable developments." },
-  { title: "Electrical Maintenance", desc: "Annual maintenance contracts and 24/7 breakdown support for electrical infrastructure." },
-  { title: "Safety & Compliance", desc: "Electrical safety audits, earthing systems and lightning protection solutions." },
-  { title: "Automation & Controls", desc: "Building management systems, SCADA integration and smart electrical controls." },
+  { title: "HT/LT Electrical Works", desc: "Complete high-tension and low-tension electrical installations for large-scale developments.", image: imgPylon, focus: "70% 50%" },
+  { title: "Power Distribution", desc: "Substation design, panel manufacturing and distribution network engineering.", image: imgSubstation, focus: "70% 60%" },
+  { title: "Solar & Renewable Energy", desc: "Rooftop solar installations and hybrid energy solutions for sustainable developments.", image: imgNight, focus: "50% 40%" },
+  { title: "Electrical Maintenance", desc: "Annual maintenance contracts and 24/7 breakdown support for electrical infrastructure.", image: imgEngineer, focus: "30% 40%" },
+  { title: "Safety & Compliance", desc: "Electrical safety audits, earthing systems and lightning protection solutions.", image: imgDusk, focus: "70% 50%" },
+  { title: "Automation & Controls", desc: "Building management systems, SCADA integration and smart electrical controls.", image: imgControl, focus: "60% 55%" },
 ];
 
 export type Project = {

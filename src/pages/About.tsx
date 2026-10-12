@@ -9,13 +9,14 @@ import Financials from "@/components/Financials";
 import Credentials from "@/components/Credentials";
 import Clients from "@/components/Clients";
 import CtaBand from "@/components/CtaBand";
-import { strengths, process, sectors } from "@/data/company";
+import { strengths, process, sectors, photos } from "@/data/company";
 
 const About = () => (
   <div className="min-h-screen bg-background">
     <Navigation />
     <main>
       <PageHeader
+        image={photos.engineer}
         title="About us"
         intro="Electrical engineering and contracting for large-scale residential and commercial developments in Delhi / NCR since 2000."
       />
@@ -48,6 +49,15 @@ const About = () => (
         </div>
       </section>
 
+      <div className="container pb-4">
+        <img
+          src={photos.substation}
+          alt=""
+          loading="lazy"
+          className="h-48 w-full object-cover sm:h-72 lg:h-96"
+        />
+      </div>
+
       <Stats />
 
       <section className="section bg-background">
@@ -62,9 +72,9 @@ const About = () => (
               {sectors.join(" · ")}
             </p>
           </Reveal>
-          <ol className="grid gap-px bg-border border border-border sm:grid-cols-2 lg:grid-cols-5">
+          <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {process.map((p, i) => (
-              <Reveal key={p.step} delay={i * 0.05} className="bg-background p-6">
+              <Reveal key={p.step} delay={i * 0.05} className="border border-border bg-card p-6 sm:last:col-span-2 lg:last:col-span-1">
                 <span className="text-xs font-semibold tracking-widest text-accent-text">0{i + 1}</span>
                 <h3 className="mt-3 font-sans text-base font-semibold text-foreground">{p.step}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
