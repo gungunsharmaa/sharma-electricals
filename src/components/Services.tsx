@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import Reveal from "./Reveal";
+import Reveal, { type RevealFrom } from "./Reveal";
 import { services } from "@/data/company";
 
 interface ServicesProps {
@@ -8,8 +9,43 @@ interface ServicesProps {
   showHeading?: boolean;
 }
 
-const Services = ({ showHeading = true }: ServicesProps) => (
-  <section className="section bg-card">
+// Matches the grid: 1 column on phones, 2 from sm, 3 from lg.
+const currentColumns = () => {
+  if (typeof window === "undefined") return 1;
+  if (window.matchMedia("(min-width: 1024px)").matches) return 3;
+  return window.matchMedia("(min-width: 640px)").matches ? 2 : 1;
+};
+
+const useColumns = () => {
+  // Read synchronously: Reveal captures its entry direction on first render.
+  const [cols, setCols] = useState(currentColumns);
+  useEffect(() => {
+    const lg = window.matchMedia("(min-width: 1024px)");
+    const sm = window.matchMedia("(min-width: 640px)");
+    const update = () => setCols(currentColumns());
+    lg.addEventListener("change", update);
+    sm.addEventListener("change", update);
+    return () => {
+      lg.removeEventListener("change", update);
+      sm.removeEventListener("change", update);
+    };
+  }, []);
+  return cols;
+};
+
+// Cards slide in from alternating sides: by row on phones, by column on wider grids.
+const directionFor = (i: number, cols: number): RevealFrom => {
+  if (cols === 1) return i % 2 === 0 ? "left" : "right";
+  const col = i % cols;
+  if (col === 0) return "left";
+  if (col === cols - 1) return "right";
+  return "up";
+};
+
+const Services = ({ showHeading = true }: ServicesProps) => {
+  const cols = useColumns();
+  return (
+  <section className="section bg-card overflow-x-clip">
     <div className="container">
       {showHeading && (
         <Reveal className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
@@ -29,7 +65,8 @@ const Services = ({ showHeading = true }: ServicesProps) => (
         {services.map((service, i) => (
           <Reveal
             key={service.title}
-            delay={(i % 3) * 0.06}
+            from={directionFor(i, cols)}
+            delay={(i % cols) * 0.08}
             className="group flex flex-col overflow-hidden border border-border bg-background transition-shadow hover:shadow-lg"
           >
             <div className="relative aspect-[4/3] overflow-hidden bg-primary">
@@ -55,6 +92,7 @@ const Services = ({ showHeading = true }: ServicesProps) => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Services;
