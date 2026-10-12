@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
+import { HiMenuAlt3 } from "react-icons/hi";
+import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import seLogo from "@/assets/se-logo.jpeg";
 import { cn } from "@/lib/utils";
 import { useEnquiry } from "./EnquiryProvider";
+import { company } from "@/data/company";
 
 const navLinks = [
   { label: "Home", to: "/" },
@@ -18,16 +20,11 @@ const Navigation = () => {
   const { pathname } = useLocation();
   const { openEnquiry } = useEnquiry();
 
-  // Close the mobile menu on navigation, and lock page scroll while it's open.
+  // Close the drawer whenever the route changes.
   useEffect(() => setIsOpen(false), [pathname]);
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
 
   return (
+    <>
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <div className="container flex h-16 md:h-[72px] items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
@@ -70,46 +67,60 @@ const Navigation = () => {
 
         <button
           className="lg:hidden -mr-2 p-2 text-2xl text-foreground"
-          onClick={() => setIsOpen((o) => !o)}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          onClick={() => setIsOpen(true)}
+          aria-label="Open menu"
           aria-expanded={isOpen}
         >
-          {isOpen ? <HiX /> : <HiMenuAlt3 />}
+          <HiMenuAlt3 />
         </button>
       </div>
-
-      {/* Mobile: full-height panel under the bar */}
-      {isOpen && (
-        <nav className="lg:hidden fixed inset-x-0 top-16 bottom-0 overflow-y-auto border-t border-border bg-background">
-          <div className="container flex flex-col py-4">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                end={link.to === "/"}
-                className={({ isActive }) =>
-                  cn(
-                    "border-b border-border py-4 text-lg font-medium",
-                    isActive ? "text-foreground" : "text-muted-foreground"
-                  )
-                }
-              >
-                {link.label}
-              </NavLink>
-            ))}
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                openEnquiry();
-              }}
-              className="mt-6 w-full px-5 py-3.5 text-sm font-semibold bg-primary text-primary-foreground rounded-sm"
-            >
-              Enquire now
-            </button>
-          </div>
-        </nav>
-      )}
     </header>
+
+    {/* Mobile drawer: slides in from the right. Rendered in a portal so the header's
+        backdrop-blur can't collapse it. */}
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetContent side="right" className="flex w-[85%] max-w-sm flex-col gap-0 p-0 lg:hidden">
+        <div className="flex h-16 items-center border-b border-border px-6">
+          <SheetTitle className="font-serif text-lg font-semibold text-foreground">Sharma Electricals</SheetTitle>
+          <SheetDescription className="sr-only">Site navigation</SheetDescription>
+        </div>
+        <nav className="flex flex-1 flex-col overflow-y-auto px-6 py-2">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === "/"}
+              className={({ isActive }) =>
+                cn(
+                  "border-b border-border py-4 text-lg font-medium",
+                  isActive ? "text-foreground" : "text-muted-foreground"
+                )
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+        <div className="space-y-3 border-t border-border p-6">
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              openEnquiry();
+            }}
+            className="w-full rounded-sm bg-primary px-5 py-3.5 text-sm font-semibold text-primary-foreground"
+          >
+            Enquire now
+          </button>
+          <a
+            href={company.phoneHref}
+            className="block w-full rounded-sm border border-border px-5 py-3.5 text-center text-sm font-semibold text-foreground"
+          >
+            Call {company.phone}
+          </a>
+        </div>
+      </SheetContent>
+    </Sheet>
+    </>
   );
 };
 
