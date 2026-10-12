@@ -4,10 +4,14 @@ import { stats } from "@/data/company";
 const Stats = () => (
   <section className="border-b border-border bg-background">
     <div className="container">
-      <dl className="grid grid-cols-2 gap-x-4 gap-y-8 py-10 md:grid-cols-4 md:gap-x-0 md:gap-y-0 md:divide-x md:divide-border md:py-0">
+      {/* Columns follow the number of stats, so 3 or 4 items always fill the row evenly. */}
+      <dl
+        style={{ "--cols": stats.length } as React.CSSProperties}
+        className="grid grid-cols-2 gap-x-4 gap-y-10 py-10 text-center md:grid-cols-[repeat(var(--cols),minmax(0,1fr))] md:gap-0 md:divide-x md:divide-border md:py-0 [&>*:last-child:nth-child(odd)]:col-span-2 md:[&>*:last-child:nth-child(odd)]:col-span-1"
+      >
         {stats.map((stat) => (
-          <div key={stat.label} className="md:px-6 md:py-14 md:first:pl-0">
-            <dd className="font-serif text-4xl lg:text-6xl font-semibold text-primary">
+          <div key={stat.label} className="flex flex-col items-center justify-center md:px-6 md:py-14">
+            <dd className="font-serif text-4xl font-semibold text-primary">
               <AnimatedCounter
                 target={stat.value}
                 prefix={stat.prefix}

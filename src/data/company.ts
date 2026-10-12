@@ -32,7 +32,7 @@ export const stats = [
   { value: 25, suffix: "+", label: "Years in Delhi / NCR" },
   { value: 4.73, prefix: "₹", unit: "Cr", decimals: 2, label: "Turnover, FY 2025–26" },
   { value: 8.1, prefix: "₹", unit: "Cr", decimals: 2, label: "Works in hand" },
-  { value: 14, label: "Engineers, managers & supervisors" },
+
 ];
 
 // Annual turnover in INR, oldest first.
