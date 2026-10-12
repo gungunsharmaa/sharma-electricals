@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git commit -q -m 'Redesign site with corporate look and dedicated contact page *)",
+      "Bash(git push *)"
+    ]
+  }
+}
