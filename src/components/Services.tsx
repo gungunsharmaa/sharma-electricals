@@ -32,7 +32,7 @@ const Services = ({ showHeading = true }: ServicesProps) => (
             delay={(i % 3) * 0.06}
             className="group border-b border-r border-border bg-background p-8 transition-colors hover:bg-primary hover:text-primary-foreground"
           >
-            <span className="text-xs font-semibold tracking-widest text-accent">0{i + 1}</span>
+            <span className="text-xs font-semibold tracking-widest text-accent-text transition-colors group-hover:text-accent">0{i + 1}</span>
             <h3 className="mt-4 font-sans text-lg font-semibold">{service.title}</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground transition-colors group-hover:text-primary-foreground/75">
               {service.desc}

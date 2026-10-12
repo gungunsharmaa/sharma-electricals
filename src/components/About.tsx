@@ -28,7 +28,7 @@ const About = () => (
       <div className="lg:col-span-6 grid sm:grid-cols-2 gap-px bg-border border border-border">
         {strengths.map((item, i) => (
           <Reveal key={item.title} delay={i * 0.06} className="bg-background p-7">
-            <span className="text-xs font-semibold tracking-widest text-accent">0{i + 1}</span>
+            <span className="text-xs font-semibold tracking-widest text-accent-text">0{i + 1}</span>
             <h3 className="mt-3 font-sans text-base font-semibold text-foreground">{item.title}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.desc}</p>
           </Reveal>

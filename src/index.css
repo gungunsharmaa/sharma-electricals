@@ -3,52 +3,53 @@
 @tailwind utilities;
 
 /* Sharma Electricals — Corporate Design System
-   Light, restrained: white canvas, deep navy, a single amber accent. */
+   Light, restrained: white canvas, deep teal-navy, and the logo's cyan as the accent. */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222 40% 12%;
+    --foreground: 200 35% 12%;
 
-    --card: 210 25% 97%;
-    --card-foreground: 222 40% 12%;
+    --card: 195 25% 97%;
+    --card-foreground: 200 35% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 40% 12%;
+    --popover-foreground: 200 35% 12%;
 
-    /* Primary: deep navy */
-    --primary: 219 65% 17%;
+    /* Primary: deep teal-navy, same hue as the logo */
+    --primary: 193 80% 14%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 214 30% 93%;
-    --secondary-foreground: 222 40% 12%;
+    --secondary: 195 30% 93%;
+    --secondary-foreground: 200 35% 12%;
 
-    --muted: 214 22% 95%;
-    --muted-foreground: 217 14% 38%;
+    --muted: 195 20% 95%;
+    --muted-foreground: 200 14% 36%;
 
-    /* Accent: amber — used sparingly (rules, small highlights) */
-    --accent: 38 92% 50%;
-    --accent-foreground: 222 40% 12%;
+    /* Accent: logo cyan (#00AEDB). --accent-text is a darker shade for small text on white. */
+    --accent: 192 100% 43%;
+    --accent-foreground: 193 80% 9%;
+    --accent-text: 192 100% 30%;
 
     --destructive: 0 72% 46%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 87%;
-    --input: 214 20% 80%;
-    --ring: 219 65% 17%;
+    --border: 195 18% 87%;
+    --input: 195 18% 78%;
+    --ring: 193 80% 14%;
 
     --radius: 0.25rem;
 
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 222 40% 12%;
-    --sidebar-primary: 219 65% 17%;
+    --sidebar-foreground: 200 35% 12%;
+    --sidebar-primary: 193 80% 14%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 214 22% 95%;
-    --sidebar-accent-foreground: 222 40% 12%;
-    --sidebar-border: 214 20% 87%;
-    --sidebar-ring: 219 65% 17%;
+    --sidebar-accent: 195 20% 95%;
+    --sidebar-accent-foreground: 200 35% 12%;
+    --sidebar-border: 195 18% 87%;
+    --sidebar-ring: 193 80% 14%;
 
-    --gradient-hero: linear-gradient(90deg, hsl(219 65% 12% / 0.92), hsl(219 65% 12% / 0.55));
+    --gradient-hero: linear-gradient(90deg, hsl(193 80% 9% / 0.92), hsl(193 80% 9% / 0.55));
   }
 }
 
@@ -78,7 +79,7 @@
     font-family: 'Source Serif 4', Georgia, serif;
   }
 
-  /* Small uppercase label with a short amber rule */
+  /* Small uppercase label with a short accent rule */
   .eyebrow {
     @apply flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground;
   }
