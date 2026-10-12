@@ -9,7 +9,7 @@ import Financials from "@/components/Financials";
 import Credentials from "@/components/Credentials";
 import Clients from "@/components/Clients";
 import CtaBand from "@/components/CtaBand";
-import { strengths } from "@/data/company";
+import { strengths, process, sectors } from "@/data/company";
 
 const About = () => (
   <div className="min-h-screen bg-background">
@@ -30,19 +30,49 @@ const About = () => (
           </Reveal>
           <Reveal delay={0.08} className="lg:col-span-7 space-y-5 text-muted-foreground leading-relaxed">
             <p>
-              Sharma Electricals Pvt. Ltd. is a B2B electrical engineering and contracting company headquartered in
-              Gurugram, Haryana. We specialise in large-scale electrical infrastructure — HT/LT works, power
-              distribution, substations and building electrical — for township and commercial developments.
+              Established in 2000, Sharma Electricals is a leading electrical contractor known for delivering
+              end-to-end electrical solutions across a wide range of sectors, including residential, commercial, real
+              estate and hospitality.
             </p>
             <p>
-              We work with leading real estate developers, including Signature Global, Bestech India and Vipul Limited,
-              and take projects from design through execution and commissioning.
+              We specialise in the supply, installation, testing, commissioning and handing over of both external and
+              internal electrical systems. Over the years we have built a solid reputation for our commitment to
+              quality, safety and innovation, partnering with Unitech Limited, Bestech India, Signature Global, Vipul
+              Limited, Pioneer Urban Land and Infrastructure, Ireo and Universal Buildwell.
+            </p>
+            <p>
+              We pride ourselves on tailored solutions that meet the highest standards, ensuring seamless project
+              execution from start to finish.
             </p>
           </Reveal>
         </div>
       </section>
 
       <Stats />
+
+      <section className="section bg-background">
+        <div className="container">
+          <Reveal className="mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-2xl">
+              <span className="eyebrow mb-4">Scope of work</span>
+              <h2 className="text-display text-3xl md:text-4xl text-foreground">From supply to handover.</h2>
+            </div>
+            <p className="text-sm text-muted-foreground">
+              <span className="font-semibold text-foreground">Sectors: </span>
+              {sectors.join(" · ")}
+            </p>
+          </Reveal>
+          <ol className="grid gap-px bg-border border border-border sm:grid-cols-2 lg:grid-cols-5">
+            {process.map((p, i) => (
+              <Reveal key={p.step} delay={i * 0.05} className="bg-background p-6">
+                <span className="text-xs font-semibold tracking-widest text-accent-text">0{i + 1}</span>
+                <h3 className="mt-3 font-sans text-base font-semibold text-foreground">{p.step}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
 
       <section className="section bg-card">
         <div className="container">

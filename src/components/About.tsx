@@ -9,16 +9,16 @@ const About = () => (
       <Reveal className="lg:col-span-6">
         <span className="eyebrow mb-4">Who we are</span>
         <h2 className="text-display text-3xl md:text-5xl text-foreground">
-          Building India's electrical infrastructure.
+          End-to-end electrical solutions.
         </h2>
         <p className="mt-6 text-muted-foreground leading-relaxed">
-          Sharma Electricals Pvt. Ltd. is a B2B electrical engineering and contracting company headquartered in
-          Gurugram, Haryana. Established in 2000, we have been delivering large-scale electrical infrastructure for
-          residential and commercial developments.
+          Established in 2000, Sharma Electricals is a leading electrical contractor delivering end-to-end electrical
+          solutions across residential, commercial, real estate and hospitality projects. We specialise in the supply,
+          installation, testing, commissioning and handing over of both external and internal electrical systems.
         </p>
         <p className="mt-4 text-muted-foreground leading-relaxed">
-          Our clients include Signature Global, Bestech India and Vipul Limited, and we carry a dedicated team of
-          engineers, safety and quality staff on every project.
+          We have built a reputation for quality, safety and innovation, partnering with Unitech, Bestech India,
+          Signature Global, Vipul, Pioneer Urban Land and Infrastructure, Ireo and Universal Buildwell.
         </p>
         <Link to="/about" className="link-arrow mt-8">
           More about us <FiArrowRight />

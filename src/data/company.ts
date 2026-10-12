@@ -72,6 +72,17 @@ export const credentials = [
   { label: "Litigation", value: "No arbitration or legal disputes in the last five years" },
 ];
 
+export const sectors = ["Residential", "Commercial", "Real estate", "Hospitality"];
+
+// Scope of work, in delivery order.
+export const process = [
+  { step: "Supply", desc: "Sourcing quality electrical materials from trusted suppliers." },
+  { step: "Installation", desc: "Internal and external electrical systems installed on site." },
+  { step: "Testing", desc: "Systems tested to standard before they are energized." },
+  { step: "Commissioning", desc: "Commissioning and energization of the completed works." },
+  { step: "Handing over", desc: "Clean handover to the client, ready for use." },
+];
+
 export const services = [
   { title: "HT/LT Electrical Works", desc: "Complete high-tension and low-tension electrical installations for large-scale developments." },
   { title: "Power Distribution", desc: "Substation design, panel manufacturing and distribution network engineering." },
