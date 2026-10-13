@@ -4,8 +4,6 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import Stats from "@/components/Stats";
 import Leadership from "@/components/Leadership";
-import Capability from "@/components/Capability";
-import Financials from "@/components/Financials";
 import Credentials from "@/components/Credentials";
 import Clients from "@/components/Clients";
 import CtaBand from "@/components/CtaBand";
@@ -101,8 +99,6 @@ const About = () => (
         </div>
       </section>
 
-      <Capability />
-      <Financials />
       <Leadership />
       <Credentials />
       <Clients />
