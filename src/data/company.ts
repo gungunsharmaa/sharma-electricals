@@ -19,6 +19,7 @@ export const company = {
   regionalAddress: "489/5, Street No. 3B, Patel Nagar, Gurugram, Haryana – 122001",
   phone: "+91 9811617703",
   phoneHref: "tel:+919811617703",
+  linkedin: "https://www.linkedin.com/company/sharma-electricals99/",
   email: "sharma.electricals99@gmail.com",
   emailSecondary: "infosharmaelectricals.co@gmail.com",
   gst: "06ARDPS2813D1Z4",

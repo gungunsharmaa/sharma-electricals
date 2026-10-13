@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { FiLinkedin } from "react-icons/fi";
 import seLogo from "@/assets/se-logo.jpeg";
 import { company } from "@/data/company";
 
@@ -50,6 +51,15 @@ const Footer = () => (
               </a>
             </p>
           </address>
+          <a
+            href={company.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Sharma Electricals on LinkedIn"
+            className="mt-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary-foreground/30 text-lg text-primary-foreground/80 transition-colors hover:border-accent hover:text-accent"
+          >
+            <FiLinkedin />
+          </a>
         </div>
       </div>
 

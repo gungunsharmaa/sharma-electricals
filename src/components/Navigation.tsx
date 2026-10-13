@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { HiMenuAlt3 } from "react-icons/hi";
+import { FiLinkedin } from "react-icons/fi";
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import seLogo from "@/assets/se-logo.jpeg";
 import { cn } from "@/lib/utils";
@@ -57,9 +58,18 @@ const Navigation = () => {
               {link.label}
             </NavLink>
           ))}
+          <a
+            href={company.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Sharma Electricals on LinkedIn"
+            className="ml-2 text-lg text-muted-foreground transition-colors hover:text-accent-text"
+          >
+            <FiLinkedin />
+          </a>
           <button
             onClick={openEnquiry}
-            className="ml-2 px-5 py-2.5 text-sm font-semibold bg-primary text-primary-foreground rounded-sm hover:bg-primary/90 transition-colors"
+            className="px-5 py-2.5 text-sm font-semibold bg-primary text-primary-foreground rounded-sm hover:bg-primary/90 transition-colors"
           >
             Enquire now
           </button>
@@ -116,6 +126,14 @@ const Navigation = () => {
             className="block w-full rounded-sm border border-border px-5 py-3.5 text-center text-sm font-semibold text-foreground"
           >
             Call {company.phone}
+          </a>
+          <a
+            href={company.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-sm border border-border px-5 py-3.5 text-sm font-semibold text-foreground"
+          >
+            <FiLinkedin className="text-base" /> Follow us on LinkedIn
           </a>
         </div>
       </SheetContent>
