@@ -1,3 +1,4 @@
+import Seo from "@/components/Seo";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
@@ -11,6 +12,7 @@ import { strengths, process, sectors, photos } from "@/data/company";
 
 const About = () => (
   <div className="min-h-screen bg-background">
+    <Seo title="About Us" description="Sharma Electricals Pvt. Ltd. — 25+ years of electrical engineering and contracting in Gurugram. Our story, leadership, credentials and the developers we work with." path="/about" />
     <Navigation />
     <main>
       <PageHeader

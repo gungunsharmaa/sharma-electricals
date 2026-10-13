@@ -1,3 +1,4 @@
+import Seo from "@/components/Seo";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
@@ -14,6 +15,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title="Blog" description="Articles from Sharma Electricals." path="/blog" noindex />
       <Navigation />
       
       {/* Hero Section */}

@@ -1,3 +1,4 @@
+import Seo from "@/components/Seo";
 import { useParams, Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { blogPosts } from "@/data/blogPosts";
@@ -9,6 +10,7 @@ const BlogPost = () => {
   if (!post) {
     return (
       <div className="min-h-screen bg-background">
+        <Seo title="Post not found" description="This post could not be found." path={`/blog/${id}`} noindex />
         <Navigation />
         <div className="pt-32 pb-32">
           <div className="container mx-auto px-6">
@@ -31,6 +33,7 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo title={post.title} description={post.excerpt} path={`/blog/${post.id}`} noindex />
       <Navigation />
       
       {/* Article Header */}

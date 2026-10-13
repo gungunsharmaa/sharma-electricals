@@ -1,3 +1,4 @@
+import Seo from "@/components/Seo";
 import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -16,6 +17,7 @@ const Work = () => {
 
   return (
     <div className="min-h-screen bg-background">
+    <Seo title="Projects" description="Ongoing and completed electrical projects by Sharma Electricals for leading real estate developers in Gurugram and Delhi NCR." path="/work" />
       <Navigation />
       <main>
         <PageHeader

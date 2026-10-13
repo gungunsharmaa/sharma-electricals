@@ -1,3 +1,4 @@
+import Seo from "@/components/Seo";
 import { FiMapPin, FiPhone, FiMail, FiExternalLink } from "react-icons/fi";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
@@ -16,6 +17,7 @@ const details = [
 
 const Contact = () => (
   <div className="min-h-screen bg-background">
+    <Seo title="Contact Us" description="Contact Sharma Electricals Pvt. Ltd., Gurugram — corporate and regional office addresses, phone, email and an enquiry form." path="/contact" />
     <Navigation />
     <main>
       <PageHeader
