@@ -79,7 +79,7 @@ const Navigation = () => {
     {/* Mobile drawer: slides in from the right. Rendered in a portal so the header's
         backdrop-blur can't collapse it. */}
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
-      <SheetContent side="right" className="flex w-[85%] max-w-sm flex-col gap-0 p-0 lg:hidden">
+      <SheetContent side="right" className="flex w-[62%] min-w-[240px] max-w-[300px] flex-col gap-0 p-0 sm:max-w-[300px] lg:hidden">
         <div className="flex h-16 items-center border-b border-border px-6">
           <SheetTitle className="font-serif text-lg font-semibold text-foreground">Sharma Electricals</SheetTitle>
           <SheetDescription className="sr-only">Site navigation</SheetDescription>
