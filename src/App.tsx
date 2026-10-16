@@ -13,6 +13,7 @@ import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
 import { EnquiryProvider } from "./components/EnquiryProvider";
 import MobileActionBar from "./components/MobileActionBar";
+import Tracking from "./components/Tracking";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <Tracking />
         <EnquiryProvider>
         <Routes>
           <Route path="/" element={<Index />} />

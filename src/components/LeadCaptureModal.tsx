@@ -1,3 +1,4 @@
+import { getAttribution, track } from "@/lib/tracking";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -54,10 +55,12 @@ const LeadCaptureModal = ({ open, onOpenChange }: LeadCaptureModalProps) => {
           message: data.message || "No details provided",
           source: "Website enquiry popup",
           botcheck: data.botcheck,
+          ...getAttribution(),
         }),
       });
       const result = await response.json();
       if (result.success) {
+        track("generate_lead", { form_name: "enquiry_popup" });
         toast({ title: "Thanks for reaching out!", description: "We'll be in touch shortly." });
         reset();
         onOpenChange(false);

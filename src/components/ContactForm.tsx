@@ -1,3 +1,4 @@
+import { getAttribution, track } from "@/lib/tracking";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -48,10 +49,12 @@ const ContactForm = () => {
           email: data.email,
           message: data.message || "No details provided",
           botcheck: data.botcheck,
+          ...getAttribution(),
         }),
       });
       const result = await response.json();
       if (result.success) {
+        track("generate_lead", { form_name: "contact_page" });
         setSubmitStatus("success");
         reset();
         setTimeout(() => setSubmitStatus("idle"), 5000);

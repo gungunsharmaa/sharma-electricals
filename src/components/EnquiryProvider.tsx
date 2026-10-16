@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import LeadCaptureModal from "./LeadCaptureModal";
+import { track } from "@/lib/tracking";
 
 const STORAGE_KEY = "leadCaptureDismissedAt";
 const COOLDOWN_DAYS = 7;
@@ -44,16 +45,23 @@ export const EnquiryProvider = ({ children }: { children: React.ReactNode }) => 
 
   useEffect(() => {
     if (landedOn.current === "/contact" || recentlyDismissed()) return;
-    const t = setTimeout(() => setOpen(true), OPEN_DELAY_MS);
+    const t = setTimeout(() => {
+      track("enquiry_popup_open", { trigger: "auto" });
+      setOpen(true);
+    }, OPEN_DELAY_MS);
     return () => clearTimeout(t);
   }, []);
 
   const handleOpenChange = useCallback((next: boolean) => {
     if (!next) remember();
+    if (next) track("enquiry_popup_open");
     setOpen(next);
   }, []);
 
-  const openEnquiry = useCallback(() => setOpen(true), []);
+  const openEnquiry = useCallback(() => {
+    track("enquiry_popup_open", { trigger: "button" });
+    setOpen(true);
+  }, []);
 
   return (
     <EnquiryContext.Provider value={{ openEnquiry }}>
