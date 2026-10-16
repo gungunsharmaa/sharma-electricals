@@ -2,4 +2,52 @@ User-agent: *
 Allow: /
 Disallow: /blog
 
+User-agent: Googlebot
+Allow: /
+Disallow: /blog
+
+User-agent: Bingbot
+Allow: /
+Disallow: /blog
+
+User-agent: Twitterbot
+Allow: /
+Disallow: /blog
+
+User-agent: facebookexternalhit
+Allow: /
+Disallow: /blog
+
+User-agent: LinkedInBot
+Allow: /
+Disallow: /blog
+
+User-agent: GPTBot
+Allow: /
+Disallow: /blog
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /blog
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /blog
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /blog
+
+User-agent: Claude-User
+Allow: /
+Disallow: /blog
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /blog
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /blog
+
 Sitemap: https://sharma-electricals-mu.vercel.app/sitemap.xml

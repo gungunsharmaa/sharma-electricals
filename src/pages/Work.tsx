@@ -17,7 +17,7 @@ const Work = () => {
 
   return (
     <div className="min-h-screen bg-background">
-    <Seo title="Projects" description="Ongoing and completed electrical projects by Sharma Electricals for leading real estate developers in Gurugram and Delhi NCR." path="/work" />
+    <Seo path="/work" />
       <Navigation />
       <main>
         <PageHeader

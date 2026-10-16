@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 
 const Index = () => (
   <div className="min-h-screen bg-background">
-    <Seo title="Electrical Contractor in Gurugram | Sharma Electricals Pvt. Ltd." description="Sharma Electricals Pvt. Ltd. is a Gurugram electrical contractor since 2000 — HT/LT supply, installation, testing, commissioning and handover for leading real estate developers across NCR." path="/" />
+    <Seo path="/" />
     <Navigation />
     <main>
       <Hero />

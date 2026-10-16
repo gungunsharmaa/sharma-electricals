@@ -12,7 +12,7 @@ import { strengths, process, sectors, photos } from "@/data/company";
 
 const About = () => (
   <div className="min-h-screen bg-background">
-    <Seo title="About Us" description="Sharma Electricals Pvt. Ltd. — 25+ years of electrical engineering and contracting in Gurugram. Our story, leadership, credentials and the developers we work with." path="/about" />
+    <Seo path="/about" />
     <Navigation />
     <main>
       <PageHeader

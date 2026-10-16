@@ -25,10 +25,16 @@ ${pages
 </urlset>
 `;
 
+// Search, social-preview and AI crawlers are all welcome; only the template blog is blocked.
+const aiAndSocialBots = [
+  "Googlebot", "Bingbot", "Twitterbot", "facebookexternalhit", "LinkedInBot",
+  "GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "PerplexityBot", "Google-Extended",
+];
 const robots = `User-agent: *
 Allow: /
 Disallow: /blog
 
+${aiAndSocialBots.map((b) => `User-agent: ${b}\nAllow: /\nDisallow: /blog\n`).join("\n")}
 Sitemap: ${site}/sitemap.xml
 `;
 
