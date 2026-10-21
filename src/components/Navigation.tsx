@@ -33,7 +33,7 @@ const Navigation = () => {
           <span className="leading-tight">
             <span className="block font-serif text-base md:text-lg font-semibold text-foreground">Sharma Electricals</span>
             <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-              Pvt. Ltd.
+              Engineers &amp; Contractors
             </span>
           </span>
         </Link>

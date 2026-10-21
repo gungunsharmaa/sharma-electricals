@@ -29,7 +29,9 @@ const AnimatedCounter = ({ target, prefix = "", suffix = "", decimals = 0, durat
     requestAnimationFrame(tick);
   }, [inView, target, duration]);
 
-  return <span ref={ref}>{prefix}{value.toFixed(decimals)}{suffix}</span>;
+  const formatted = value.toLocaleString("en-IN", { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+
+  return <span ref={ref}>{prefix}{formatted}{suffix}</span>;
 };
 
 export default AnimatedCounter;

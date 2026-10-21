@@ -20,7 +20,7 @@ export const routes: Record<string, RouteMeta> = {
     title: "About Us",
     crumb: "About",
     description:
-      "Sharma Electricals Pvt. Ltd. — 25+ years of electrical engineering and contracting in Gurugram. Our story, leadership, credentials and the developers we work with.",
+      "Sharma Electricals Pvt. Ltd. — 25+ years of electrical engineering and contracting in Gurugram. Our story, leadership and the developers we work with.",
   },
   "/services": {
     title: "Electrical Services",
@@ -188,7 +188,7 @@ ${services.map((s) => `- ${s.title}: ${s.desc}`).join("\n")}
 
 ## Pages
 - [Home](${SITE_URL}/): Company overview
-- [About](${SITE_URL}/about): Story, leadership, credentials and clients
+- [About](${SITE_URL}/about): Story, leadership and clients
 - [Services](${SITE_URL}/services): What we do
 - [Projects](${SITE_URL}/work): Ongoing and completed projects
 - [Contact](${SITE_URL}/contact): Offices, phone, email and enquiry form

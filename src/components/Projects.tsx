@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import Reveal from "./Reveal";
-import { projects } from "@/data/company";
+import { projects, clientLogos } from "@/data/company";
 import { cn } from "@/lib/utils";
 
 export const StatusBadge = ({ status }: { status: string }) => (
@@ -16,40 +16,49 @@ export const StatusBadge = ({ status }: { status: string }) => (
   </span>
 );
 
+// Home page shows only the featured projects; the full list lives on /work.
+const featured = projects.filter((p) => p.featuredBrand);
+
 const Projects = () => (
-  <section className="section bg-background">
+  <section className="section bg-card border-y border-border">
     <div className="container">
-      <Reveal className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-        <div className="max-w-2xl">
-          <span className="eyebrow mb-4">Selected projects</span>
-          <h2 className="text-display text-3xl md:text-5xl text-foreground">
-            Delivered across Gurugram's leading developments.
-          </h2>
-        </div>
-        <Link to="/work" className="link-arrow self-start md:self-auto">
-          All projects <FiArrowRight />
-        </Link>
+      <Reveal className="mb-12 max-w-2xl">
+        <span className="eyebrow mb-4">Selected projects</span>
+        <h2 className="text-display text-3xl md:text-5xl text-foreground">
+          Delivered across Gurugram's leading developments.
+        </h2>
       </Reveal>
 
-      <div className="border-t border-border">
-        {projects.slice(0, 5).map((p, i) => (
-          <Reveal
-            key={p.title}
-            delay={i * 0.04}
-            className="grid gap-2 md:gap-8 md:grid-cols-12 md:items-center border-b border-border py-6"
-          >
-            <div className="md:col-span-4">
-              <h3 className="font-sans text-lg font-semibold text-foreground">{p.title}</h3>
-              <p className="mt-0.5 text-sm text-muted-foreground">{p.client}</p>
+      <div className="grid gap-6 md:grid-cols-2">
+        {featured.map((p, i) => (
+          <Reveal key={p.title} delay={i * 0.06} className="flex flex-col border border-border bg-background">
+            {/* Logo panel matches the Trusted by cards */}
+            <div className="flex h-36 items-center justify-center border-b border-border bg-white px-8 md:h-44">
+              <img src={clientLogos[p.featuredBrand!]} alt={p.client} className="max-h-16 w-auto max-w-[70%] object-contain md:max-h-20" />
             </div>
-            <p className="md:col-span-2 text-sm text-muted-foreground">{p.location}</p>
-            <p className="md:col-span-4 text-sm text-muted-foreground">{p.scope}</p>
-            <div className="md:col-span-2 md:text-right">
-              <StatusBadge status={p.status} />
+            <div className="flex flex-1 flex-col p-6 md:p-8">
+              <div className="flex items-center justify-between gap-4">
+                <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  {p.period ?? "In progress"}
+                </span>
+                <StatusBadge status={p.status} />
+              </div>
+              <h3 className="mt-5 font-serif text-2xl font-semibold text-foreground text-balance">{p.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{p.location}</p>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{p.scope}</p>
             </div>
           </Reveal>
         ))}
       </div>
+
+      <Reveal className="mt-12 flex justify-center">
+        <Link
+          to="/work"
+          className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground text-sm font-semibold rounded-sm hover:bg-primary/90 transition-colors"
+        >
+          Explore more projects <FiArrowRight />
+        </Link>
+      </Reveal>
     </div>
   </section>
 );

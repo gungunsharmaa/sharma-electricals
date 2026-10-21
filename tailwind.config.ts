@@ -96,6 +96,11 @@ export default {
             opacity: "1",
             transform: "scale(1)"
           }
+        },
+        // Track holds the list twice, so shifting by half loops seamlessly.
+        "marquee": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" }
         }
       },
       animation: {
@@ -103,6 +108,7 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
         "scale-in": "scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+        "marquee": "marquee 30s linear infinite",
       },
       backgroundImage: {
         'gradient-hero': 'var(--gradient-hero)',

@@ -4,6 +4,12 @@ import imgControl from "@/assets/hero-slide-3.jpg";
 import imgEngineer from "@/assets/hero-slide-4.jpg";
 import imgPylon from "@/assets/hero-slide-5.jpg";
 import imgNight from "@/assets/hero-slide-6.jpg";
+import logoSignature from "@/assets/clients/signature-global.svg";
+import logoBestech from "@/assets/clients/bestech.png";
+import logoVipul from "@/assets/clients/vipul.png";
+import logoUnitech from "@/assets/clients/unitech.png";
+import logoPioneer from "@/assets/clients/pioneer-urban.png";
+import logoUniversal from "@/assets/clients/universal-buildwell.png";
 
 // Page banner / section photos, shared so pages stay consistent.
 export const photos = { substation: imgSubstation, dusk: imgDusk, control: imgControl, engineer: imgEngineer, pylon: imgPylon, night: imgNight };
@@ -29,24 +35,13 @@ export const company = {
     "https://www.google.com/maps/place/Bestech+Citygate/@28.3726942,76.9453924,18z/data=!4m7!3m6!1s0x390d3db43d23f34f:0x245f39d482eecb46!4b1!8m2!3d28.3726942!4d76.9453924!16s%2Fg%2F11c3s98xzm",
 };
 
-export const stats = [
-  { value: 25, suffix: "+", label: "Years in Delhi / NCR" },
-  { value: 4.73, prefix: "₹", unit: "Cr", decimals: 2, label: "Turnover, FY 2025–26" },
-  { value: 8.1, prefix: "₹", unit: "Cr", decimals: 2, label: "Works in hand" },
+export type Stat = { value: number; label: string; prefix?: string; suffix?: string; unit?: string; decimals?: number };
 
+export const stats: Stat[] = [
+  { value: 25, suffix: "+", label: "Years of Experience" },
+  { value: 1000, suffix: "+", label: "Projects Completed" },
+  { value: 500, suffix: "+", label: "Team Size" },
 ];
-
-// Annual turnover in INR, oldest first.
-export const turnover = [
-  { year: "2020–21", amount: 11011112 },
-  { year: "2021–22", amount: 17274110 },
-  { year: "2022–23", amount: 7788340 },
-  { year: "2023–24", amount: 21814869 },
-  { year: "2024–25", amount: 13206270 },
-  { year: "2025–26", amount: 47300000 },
-];
-
-export const worksInHand = 81027781;
 
 export const team = [
   { role: "Project managers", count: 4 },
@@ -75,14 +70,6 @@ export const equipment = [
 
 export const suppliers = ["Havells Cables", "Schneider Electric", "Polycab Cables", "Eaton Power Quality"];
 
-export const credentials = [
-  { label: "Established", value: "2000, in Delhi / NCR since the same year" },
-  { label: "GST registration", value: company.gst },
-  { label: "MSME registration", value: company.msme },
-  { label: "Statutory compliance", value: "Registered under PF, ESI and Labour Identification" },
-  { label: "Litigation", value: "No arbitration or legal disputes in the last five years" },
-];
-
 export const sectors = ["Residential", "Commercial", "Real estate", "Hospitality"];
 
 // Scope of work, in delivery order.
@@ -110,13 +97,15 @@ export type Project = {
   scope: string;
   status: "Completed" | "Ongoing";
   period?: string;
+  // Key into clientLogos; set on projects shown on the home page.
+  featuredBrand?: string;
 };
 
 // Ongoing projects first so they lead on the home page.
 export const projects: Project[] = [
-  { title: "Signature Global City 37D-II", client: "Signature Global (India) Ltd.", location: "Sector 37D, Gurugram", scope: "Internal electrical works", status: "Ongoing", period: "Completion expected Dec 2026" },
+  { title: "Signature Global City 37D-II", client: "Signature Global (India) Ltd.", location: "Sector 37D, Gurugram", scope: "Internal electrical works", status: "Ongoing", period: "Completion expected Dec 2026", featuredBrand: "Signature Global" },
   { title: "Signature Global City 79B", client: "Signature Global (India) Ltd.", location: "Sector 79B, Gurugram", scope: "External electrical works across 12.49 acres", status: "Ongoing" },
-  { title: "Bestech Citygate", client: "Bestech India Pvt. Ltd.", location: "Sector 81A, Gurugram", scope: "Internal electrical works", status: "Ongoing" },
+  { title: "Bestech Citygate", client: "Bestech India Pvt. Ltd.", location: "Sector 81A, Gurugram", scope: "Internal electrical works", status: "Ongoing", featuredBrand: "Bestech India" },
   { title: "Signature Global SCO-88A", client: "Signature Global India Ltd.", location: "Sector 88A, Gurugram", scope: "External electrical works", status: "Completed", period: "2025–26" },
   { title: "Signature Global City 37D-II", client: "Signature Global (India) Ltd.", location: "Sector 37D, Gurugram", scope: "External electrical works across 5.6 acres", status: "Completed", period: "2025–26" },
   { title: "Vipul Pratham Apartments", client: "Vipul Ltd.", location: "Bawal, Rewari", scope: "Internal and external electrical works", status: "Completed", period: "2025" },
@@ -155,3 +144,13 @@ export const clients = [
   "Ireo Private Limited",
   "Universal Buildwell",
 ];
+
+// Logos from each client's official website. Clients without one render as a name card.
+export const clientLogos: Record<string, string> = {
+  "Signature Global": logoSignature,
+  "Bestech India": logoBestech,
+  "Vipul Limited": logoVipul,
+  "Unitech Limited": logoUnitech,
+  "Pioneer Urban Land & Infrastructure": logoPioneer,
+  "Universal Buildwell": logoUniversal,
+};
