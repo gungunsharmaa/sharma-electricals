@@ -50,4 +50,4 @@ User-agent: Google-Extended
 Allow: /
 Disallow: /blog
 
-Sitemap: https://sharma-electricals-mu.vercel.app/sitemap.xml
+Sitemap: https://sharmaelectricals.co/sitemap.xml
