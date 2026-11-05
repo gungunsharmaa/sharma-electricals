@@ -1,7 +1,7 @@
 // Runs before every build: writes public/sitemap.xml and public/robots.txt for the configured domain.
 import fs from "node:fs";
 
-const site = (process.env.VITE_SITE_URL || "https://sharma-electricals-mu.vercel.app").replace(/\/$/, "");
+const site = (process.env.VITE_SITE_URL || "https://sharmaelectricals.co").replace(/\/$/, "");
 const pages = [
   { path: "", priority: "1.0" },
   { path: "/about", priority: "0.8" },
@@ -25,10 +25,16 @@ ${pages
 </urlset>
 `;
 
+// Search, social-preview and AI crawlers are all welcome; only the template blog is blocked.
+const aiAndSocialBots = [
+  "Googlebot", "Bingbot", "Twitterbot", "facebookexternalhit", "LinkedInBot",
+  "GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-User", "PerplexityBot", "Google-Extended",
+];
 const robots = `User-agent: *
 Allow: /
 Disallow: /blog
 
+${aiAndSocialBots.map((b) => `User-agent: ${b}\nAllow: /\nDisallow: /blog\n`).join("\n")}
 Sitemap: ${site}/sitemap.xml
 `;
 

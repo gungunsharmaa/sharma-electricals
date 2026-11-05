@@ -17,7 +17,7 @@ const details = [
 
 const Contact = () => (
   <div className="min-h-screen bg-background">
-    <Seo title="Contact Us" description="Contact Sharma Electricals Pvt. Ltd., Gurugram — corporate and regional office addresses, phone, email and an enquiry form." path="/contact" />
+    <Seo path="/contact" />
     <Navigation />
     <main>
       <PageHeader

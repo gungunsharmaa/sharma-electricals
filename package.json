@@ -9,7 +9,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prebuild": "node scripts/generate-seo-files.mjs"
+    "prebuild": "node scripts/generate-seo-files.mjs",
+    "postbuild": "node scripts/prerender-head.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

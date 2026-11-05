@@ -5,14 +5,13 @@ import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
 import Stats from "@/components/Stats";
 import Leadership from "@/components/Leadership";
-import Credentials from "@/components/Credentials";
 import Clients from "@/components/Clients";
 import CtaBand from "@/components/CtaBand";
 import { strengths, process, sectors, photos } from "@/data/company";
 
 const About = () => (
   <div className="min-h-screen bg-background">
-    <Seo title="About Us" description="Sharma Electricals Pvt. Ltd. — 25+ years of electrical engineering and contracting in Gurugram. Our story, leadership, credentials and the developers we work with." path="/about" />
+    <Seo path="/about" />
     <Navigation />
     <main>
       <PageHeader
@@ -102,7 +101,6 @@ const About = () => (
       </section>
 
       <Leadership />
-      <Credentials />
       <Clients />
       <CtaBand />
     </main>
