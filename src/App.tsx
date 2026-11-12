@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import { EnquiryProvider } from "./components/EnquiryProvider";
 import MobileActionBar from "./components/MobileActionBar";
 import Tracking from "./components/Tracking";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +24,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <Tracking />
         <EnquiryProvider>
         <Routes>
