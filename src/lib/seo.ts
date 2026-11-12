@@ -12,15 +12,15 @@ export interface RouteMeta {
 
 export const routes: Record<string, RouteMeta> = {
   "/": {
-    title: "Electrical Contractor in Gurugram | Sharma Electricals Pvt. Ltd.",
+    title: "Electrical Contractor in Gurugram | Sharma Electricals",
     description:
-      "Sharma Electricals Pvt. Ltd. is a Gurugram electrical contractor since 2000 — HT/LT supply, installation, testing, commissioning and handover for leading real estate developers across NCR.",
+      "Sharma Electricals is a Gurugram electrical contractor since 2000 — HT/LT supply, installation, testing, commissioning and handover for leading real estate developers across NCR.",
   },
   "/about": {
     title: "About Us",
     crumb: "About",
     description:
-      "Sharma Electricals Pvt. Ltd. — 25+ years of electrical engineering and contracting in Gurugram. Our story, leadership and the developers we work with.",
+      "Sharma Electricals — 25+ years of electrical engineering and contracting in Gurugram. Our story, leadership and the developers we work with.",
   },
   "/services": {
     title: "Electrical Services",
@@ -38,7 +38,7 @@ export const routes: Record<string, RouteMeta> = {
     title: "Contact Us",
     crumb: "Contact",
     description:
-      "Contact Sharma Electricals Pvt. Ltd., Gurugram — corporate and regional office addresses, phone, email and an enquiry form.",
+      "Contact Sharma Electricals, Gurugram — corporate and regional office addresses, phone, email and an enquiry form.",
   },
 };
 

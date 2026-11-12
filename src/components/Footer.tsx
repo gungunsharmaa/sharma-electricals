@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FiLinkedin } from "react-icons/fi";
-import seLogo from "@/assets/se-logo.jpeg";
+import seLogo from "@/assets/se-logo-sm.jpg";
 import { company } from "@/data/company";
 
 const links = [
@@ -17,7 +17,7 @@ const Footer = () => (
       <div className="grid gap-12 md:grid-cols-12">
         <div className="md:col-span-5">
           <div className="flex items-center gap-3 mb-5">
-            <img src={seLogo} alt="" className="h-10 w-10 rounded-sm object-cover" />
+            <img src={seLogo} width={40} height={40} alt="" className="h-10 w-10 rounded-sm object-cover" />
             <span className="font-serif text-xl font-semibold">{company.short}</span>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-primary-foreground/70">

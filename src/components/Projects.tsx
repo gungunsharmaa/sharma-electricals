@@ -34,7 +34,7 @@ const Projects = () => (
           <Reveal key={p.title} delay={i * 0.06} className="flex flex-col border border-border bg-background">
             {/* Logo panel matches the Trusted by cards */}
             <div className="flex h-36 items-center justify-center border-b border-border bg-white px-8 md:h-44">
-              <img src={clientLogos[p.featuredBrand!]} alt={p.client} className="max-h-16 w-auto max-w-[70%] object-contain md:max-h-20" />
+              <img src={clientLogos[p.featuredBrand!].src} width={clientLogos[p.featuredBrand!].width} height={clientLogos[p.featuredBrand!].height} decoding="async" alt={p.client} className="max-h-16 w-auto max-w-[70%] object-contain md:max-h-20" />
             </div>
             <div className="flex flex-1 flex-col p-6 md:p-8">
               <div className="flex items-center justify-between gap-4">

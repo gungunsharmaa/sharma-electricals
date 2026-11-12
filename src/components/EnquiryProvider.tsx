@@ -1,7 +1,9 @@
-import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import LeadCaptureModal from "./LeadCaptureModal";
 import { track } from "@/lib/tracking";
+
+// The popup (form, validation, dialog) loads only when it is first opened.
+const LeadCaptureModal = lazy(() => import("./LeadCaptureModal"));
 
 const STORAGE_KEY = "leadCaptureDismissedAt";
 const COOLDOWN_DAYS = 7;
@@ -40,17 +42,27 @@ const recentlyDismissed = () => {
  */
 export const EnquiryProvider = ({ children }: { children: React.ReactNode }) => {
   const [open, setOpen] = useState(false);
+  const [everOpened, setEverOpened] = useState(false);
+  // The element that had focus when the popup opened, so focus can go back to it on close.
+  const returnFocusTo = useRef<HTMLElement | null>(null);
   const { pathname } = useLocation();
   const landedOn = useRef(pathname);
+
+  const show = useCallback(() => {
+    const active = document.activeElement;
+    returnFocusTo.current = active instanceof HTMLElement && active !== document.body ? active : null;
+    setEverOpened(true);
+    setOpen(true);
+  }, []);
 
   useEffect(() => {
     if (landedOn.current === "/contact" || recentlyDismissed()) return;
     const t = setTimeout(() => {
       track("enquiry_popup_open", { trigger: "auto" });
-      setOpen(true);
+      show();
     }, OPEN_DELAY_MS);
     return () => clearTimeout(t);
-  }, []);
+  }, [show]);
 
   const handleOpenChange = useCallback((next: boolean) => {
     if (!next) remember();
@@ -60,13 +72,17 @@ export const EnquiryProvider = ({ children }: { children: React.ReactNode }) => 
 
   const openEnquiry = useCallback(() => {
     track("enquiry_popup_open", { trigger: "button" });
-    setOpen(true);
-  }, []);
+    show();
+  }, [show]);
 
   return (
     <EnquiryContext.Provider value={{ openEnquiry }}>
       {children}
-      <LeadCaptureModal open={open} onOpenChange={handleOpenChange} />
+      {everOpened && (
+        <Suspense fallback={null}>
+          <LeadCaptureModal open={open} onOpenChange={handleOpenChange} returnFocusTo={returnFocusTo} />
+        </Suspense>
+      )}
     </EnquiryContext.Provider>
   );
 };

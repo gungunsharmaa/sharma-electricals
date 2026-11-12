@@ -6,6 +6,16 @@ import fs from "node:fs";
 import path from "node:path";
 import { createServer } from "vite";
 
+// Hashed file names of the responsive hero image, so the home page can preload the right size early.
+const heroPreload = () => {
+  const files = fs.readdirSync("dist/assets");
+  const pick = (w) => files.find((f) => new RegExp(`^hero-electrical-${w}-.*\\.jpg$`).test(f));
+  const sizes = [640, 800, 1024, 1600];
+  const names = sizes.map(pick);
+  if (names.some((n) => !n)) return "";
+  return `<link data-rh="true" rel="preload" as="image" imagesrcset="${names.map((n, i) => `/assets/${n} ${sizes[i]}w`).join(", ")}" imagesizes="100vw" fetchpriority="high">`;
+};
+
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
 const vite = await createServer({ server: { middlewareMode: true }, appType: "custom", logLevel: "error" });
@@ -37,11 +47,12 @@ try {
       `<meta data-rh="true" property="og:image" content="${esc(seo.SHARE_IMAGE)}">`,
       `<meta data-rh="true" property="og:image:width" content="1200">`,
       `<meta data-rh="true" property="og:image:height" content="630">`,
-      `<meta data-rh="true" property="og:image:alt" content="Sharma Electricals Pvt. Ltd. — electrical contractor in Gurugram">`,
+      `<meta data-rh="true" property="og:image:alt" content="Sharma Electricals — electrical contractor in Gurugram">`,
       `<meta data-rh="true" name="twitter:card" content="summary_large_image">`,
       `<meta data-rh="true" name="twitter:title" content="${esc(h.title)}">`,
       `<meta data-rh="true" name="twitter:description" content="${esc(h.description)}">`,
       `<meta data-rh="true" name="twitter:image" content="${esc(seo.SHARE_IMAGE)}">`,
+      route === "/" ? heroPreload() : "",
       h.jsonLd
         ? `<script data-rh="true" type="application/ld+json">${JSON.stringify(h.jsonLd).replace(/</g, "\\u003c")}</script>`
         : "",
@@ -55,6 +66,15 @@ try {
     fs.writeFileSync(out, html);
     console.log(`prerendered head: ${route}`);
   }
+
+  // Vercel serves dist/404.html, with a real 404 status, for any URL that matches no file or rewrite.
+  // The SPA boots on it and its catch-all route renders the "Page not found" view.
+  const notFound = base.replace(
+    "</head>",
+    `    <title>Page not found | ${esc(SITE_NAME)}</title>\n    <meta name="robots" content="noindex, nofollow">\n  </head>`
+  );
+  fs.writeFileSync("dist/404.html", notFound);
+  console.log("wrote 404.html");
 
   fs.writeFileSync("dist/llms.txt", seo.buildLlmsTxt());
 } finally {

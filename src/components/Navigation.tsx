@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { FiLinkedin } from "react-icons/fi";
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
-import seLogo from "@/assets/se-logo.jpeg";
+import seLogo from "@/assets/se-logo-sm.jpg";
 import { cn } from "@/lib/utils";
 import { useEnquiry } from "./EnquiryProvider";
 import { company } from "@/data/company";
@@ -29,7 +29,7 @@ const Navigation = () => {
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-border">
       <div className="container flex h-16 md:h-[72px] items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <img src={seLogo} alt="Sharma Electricals" className="h-9 w-9 md:h-10 md:w-10 rounded-sm object-cover" />
+          <img src={seLogo} width={40} height={40} alt="Sharma Electricals" className="h-9 w-9 md:h-10 md:w-10 rounded-sm object-cover" />
           <span className="leading-tight">
             <span className="block font-serif text-base md:text-lg font-semibold text-foreground">Sharma Electricals</span>
             <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">

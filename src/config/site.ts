@@ -4,4 +4,4 @@ export const SITE_URL = (
   (import.meta.env.VITE_SITE_URL as string | undefined) || "https://sharmaelectricals.co"
 ).replace(/\/$/, "");
 
-export const SITE_NAME = "Sharma Electricals Pvt. Ltd.";
+export const SITE_NAME = "Sharma Electricals";

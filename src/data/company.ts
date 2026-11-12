@@ -4,11 +4,18 @@ import imgControl from "@/assets/hero-slide-3.jpg";
 import imgEngineer from "@/assets/hero-slide-4.jpg";
 import imgPylon from "@/assets/hero-slide-5.jpg";
 import imgNight from "@/assets/hero-slide-6.jpg";
+// Card-sized (800px) copies for the Services grid, so cards don't download the 1920px banners.
+import svcSubstation from "@/assets/svc-substation.jpg";
+import svcDusk from "@/assets/svc-dusk.jpg";
+import svcControl from "@/assets/svc-control.jpg";
+import svcEngineer from "@/assets/svc-engineer.jpg";
+import svcPylon from "@/assets/svc-pylon.jpg";
+import svcNight from "@/assets/svc-night.jpg";
 import logoSignature from "@/assets/clients/signature-global.svg";
 import logoBestech from "@/assets/clients/bestech.png";
 import logoVipul from "@/assets/clients/vipul.png";
 import logoUnitech from "@/assets/clients/unitech.png";
-import logoPioneer from "@/assets/clients/pioneer-urban.png";
+import logoPioneer from "@/assets/clients/pioneer-urban-sm.png";
 import logoUniversal from "@/assets/clients/universal-buildwell.png";
 
 // Page banner / section photos, shared so pages stay consistent.
@@ -18,7 +25,7 @@ export const photos = { substation: imgSubstation, dusk: imgDusk, control: imgCo
 // Source: company profile document (contractor details), FY 2025-26.
 
 export const company = {
-  name: "Sharma Electricals Pvt. Ltd.",
+  name: "Sharma Electricals",
   short: "Sharma Electricals",
   founded: 2000,
   address: "Office No. 327, 3rd Floor, Bestech Citygate, Sector-81A, Manesar, Gurugram, Haryana – 122001",
@@ -82,12 +89,12 @@ export const process = [
 ];
 
 export const services = [
-  { title: "HT/LT Electrical Works", desc: "Complete high-tension and low-tension electrical installations for large-scale developments.", image: imgPylon, focus: "70% 50%" },
-  { title: "Power Distribution", desc: "Substation design, panel manufacturing and distribution network engineering.", image: imgSubstation, focus: "70% 60%" },
-  { title: "Solar & Renewable Energy", desc: "Rooftop solar installations and hybrid energy solutions for sustainable developments.", image: imgNight, focus: "50% 40%" },
-  { title: "Electrical Maintenance", desc: "Annual maintenance contracts and 24/7 breakdown support for electrical infrastructure.", image: imgEngineer, focus: "30% 40%" },
-  { title: "Safety & Compliance", desc: "Electrical safety audits, earthing systems and lightning protection solutions.", image: imgDusk, focus: "70% 50%" },
-  { title: "Automation & Controls", desc: "Building management systems, SCADA integration and smart electrical controls.", image: imgControl, focus: "60% 55%" },
+  { title: "HT/LT Electrical Works", desc: "Complete high-tension and low-tension electrical installations for large-scale developments.", image: svcPylon, focus: "70% 50%" },
+  { title: "Power Distribution", desc: "Substation design, panel manufacturing and distribution network engineering.", image: svcSubstation, focus: "70% 60%" },
+  { title: "Solar & Renewable Energy", desc: "Rooftop solar installations and hybrid energy solutions for sustainable developments.", image: svcNight, focus: "50% 40%" },
+  { title: "Electrical Maintenance", desc: "Annual maintenance contracts and 24/7 breakdown support for electrical infrastructure.", image: svcEngineer, focus: "30% 40%" },
+  { title: "Safety & Compliance", desc: "Electrical safety audits, earthing systems and lightning protection solutions.", image: svcDusk, focus: "70% 50%" },
+  { title: "Automation & Controls", desc: "Building management systems, SCADA integration and smart electrical controls.", image: svcControl, focus: "60% 55%" },
 ];
 
 export type Project = {
@@ -145,12 +152,14 @@ export const clients = [
   "Universal Buildwell",
 ];
 
-// Logos from each client's official website. Clients without one render as a name card.
-export const clientLogos: Record<string, string> = {
-  "Signature Global": logoSignature,
-  "Bestech India": logoBestech,
-  "Vipul Limited": logoVipul,
-  "Unitech Limited": logoUnitech,
-  "Pioneer Urban Land & Infrastructure": logoPioneer,
-  "Universal Buildwell": logoUniversal,
+// Logos from each client's official website, with intrinsic sizes so the browser can reserve space.
+// Clients without one render as a name card.
+type Logo = { src: string; width: number; height: number };
+export const clientLogos: Record<string, Logo> = {
+  "Signature Global": { src: logoSignature, width: 997, height: 259 },
+  "Bestech India": { src: logoBestech, width: 458, height: 52 },
+  "Vipul Limited": { src: logoVipul, width: 70, height: 100 },
+  "Unitech Limited": { src: logoUnitech, width: 151, height: 47 },
+  "Pioneer Urban Land & Infrastructure": { src: logoPioneer, width: 320, height: 157 },
+  "Universal Buildwell": { src: logoUniversal, width: 206, height: 86 },
 };

@@ -9,7 +9,10 @@ const ClientCard = ({ name, duplicate = false }: { name: string; duplicate?: boo
   >
     {clientLogos[name] ? (
       <img
-        src={clientLogos[name]}
+        src={clientLogos[name].src}
+        width={clientLogos[name].width}
+        height={clientLogos[name].height}
+        decoding="async"
         alt={duplicate ? "" : name}
         className="max-h-14 w-auto max-w-full object-contain md:max-h-16"
       />

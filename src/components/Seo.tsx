@@ -25,7 +25,7 @@ const Seo = ({ path, ...overrides }: SeoProps) => {
       <meta property="og:image" content={SHARE_IMAGE} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content="Sharma Electricals Pvt. Ltd. — electrical contractor in Gurugram" />
+      <meta property="og:image:alt" content="Sharma Electricals — electrical contractor in Gurugram" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={h.title} />
       <meta name="twitter:description" content={h.description} />

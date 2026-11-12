@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import heroImg from "@/assets/hero-electrical.jpg";
+import hero640 from "@/assets/hero-electrical-640.jpg";
+import hero800 from "@/assets/hero-electrical-800.jpg";
+import hero1024 from "@/assets/hero-electrical-1024.jpg";
+import hero1600 from "@/assets/hero-electrical-1600.jpg";
 import heroSlide2 from "@/assets/hero-slide-2.jpg";
 import heroSlide3 from "@/assets/hero-slide-3.jpg";
 import heroSlide4 from "@/assets/hero-slide-4.jpg";
@@ -11,6 +15,16 @@ import heroSlide6 from "@/assets/hero-slide-6.jpg";
 import { company } from "@/data/company";
 
 const heroSlides = [heroImg, heroSlide2, heroSlide3, heroSlide4, heroSlide5, heroSlide6];
+
+// First slide is the page's largest paint: a real <img> with responsive sizes and high priority
+// (scripts/prerender-head.mjs preloads the same candidates) so phones don't download the 1920px file.
+// `fetchpriority` is lowercase because React 18 doesn't recognise the camelCase prop.
+const firstSlideProps = {
+  src: hero1024,
+  srcSet: `${hero640} 640w, ${hero800} 800w, ${hero1024} 1024w, ${hero1600} 1600w`,
+  sizes: "100vw",
+  fetchpriority: "high",
+};
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,14 +39,18 @@ const Hero = () => {
   return (
     <section className="relative flex min-h-[calc(100vh-72px)] items-end overflow-hidden bg-primary text-primary-foreground">
       <AnimatePresence initial={false}>
-        <motion.div
+        <motion.img
           key={currentSlide}
+          {...(currentSlide === 0 ? firstSlideProps : { src: heroSlides[currentSlide] })}
+          alt=""
+          width={1920}
+          height={1080}
+          decoding="async"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.4, ease: "easeInOut" }}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroSlides[currentSlide]})` }}
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
       </AnimatePresence>
       <div className="absolute inset-0 bg-gradient-hero" />
