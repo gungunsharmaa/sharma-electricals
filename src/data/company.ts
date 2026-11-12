@@ -27,7 +27,6 @@ export const company = {
   phoneHref: "tel:+919811617703",
   linkedin: "https://www.linkedin.com/company/sharma-electricals99/",
   email: "sharma.electricals99@gmail.com",
-  emailSecondary: "infosharmaelectricals.co@gmail.com",
   gst: "06ARDPS2813D1Z4",
   msme: "HR05E0011984",
   mapEmbed: "https://maps.google.com/maps?q=28.3726942,76.9453924&z=16&output=embed",
