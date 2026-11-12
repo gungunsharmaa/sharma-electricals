@@ -12,6 +12,7 @@ const details = [
   { icon: FiMapPin, label: "Regional office", value: company.regionalAddress },
   { icon: FiPhone, label: "Phone", value: company.phone, href: company.phoneHref },
   { icon: FiMail, label: "Email", value: company.email, href: `mailto:${company.email}` },
+  { icon: FiMail, label: "Email (general)", value: company.emailSecondary, href: `mailto:${company.emailSecondary}` },
 ];
 
 const Contact = () => (
